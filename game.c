@@ -3,7 +3,7 @@
 #include "game.h"
 #include <stdlib.h>
 #include <string.h>
-#define FONT_SIZE 20.0f 
+#define FONT_SIZE 30.0f 
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 
@@ -338,9 +338,9 @@ void Keyinput(void)
 void Drawenemy(float posx, float posy)
 {
 
-	CP_Font_DrawText(pstr, (posx-0.5f) * gridwidth, (posy- 0.5f) * gridheight);
+	CP_Font_DrawText(pstr, (posx-1) * gridwidth, (posy- 1) * gridheight);
 	CP_Image enemy = CP_Image_Load("./Assets/Enemy1.png");
-	CP_Image_Draw(enemy, posx * gridwidth, posy * gridheight, gridwidth, gridheight, 255);
+	CP_Image_Draw(enemy, posx * gridwidth, posy * gridheight, 2*gridwidth, 2*gridheight, 255);
 	//CP_Graphics_DrawRect(posx * gridwidth, posy * gridheight, gridwidth, gridheight);
 }
 
