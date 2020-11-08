@@ -26,7 +26,7 @@ void mainmenu_init(void)
 	}
 	else
 	{
-		struct Button a1 , a2;
+		struct Button a1 , a2, a3;
 
 		CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 4, (float)displayWidth, (float)displayHeight/ 1.75f, 125);
 
@@ -43,6 +43,21 @@ void mainmenu_init(void)
 		a2.x = (float)displayWidth / 2.5f;
 		a2.y = (float)displayHeight / 2.5f;
 
+		/*
+		a3.width = 960;
+		a3.height = 180;
+
+		CP_Image logo = CP_Image_Load("./Assets/Logo.png");
+		CP_Image_Draw(logo, a1.x, a1.y, a3.width, a3.height, 255);
+		*/
+
+		CP_Image play = CP_Image_Load("./Assets/Play.png");
+		CP_Image_Draw(play, a1.x + 280, a1.y + 125, a1.width, a1.height, 255);
+
+		CP_Image exit = CP_Image_Load("./Assets/Exit.png");
+		CP_Image_Draw(exit, a2.x + 280, a2.y + 125, a1.width, a1.height, 255);
+
+		/*
 		CP_Color rectColour = CP_Color_Create(215, 196, 130, 255);
 		CP_Settings_Fill(rectColour);
 		CP_Graphics_DrawRect(a1.x, a1.y, a1.width, a1.height);
@@ -53,6 +68,7 @@ void mainmenu_init(void)
 		CP_Settings_Fill(fontColour);
 		CP_Font_DrawText("Play", (float)displayWidth / 2.2f, (float)displayHeight / 3.5f);
 		CP_Font_DrawText("Exit", (float)displayWidth / 2.2f, (float)displayHeight / 2.2f);
+		*/
 
 		float mouseX = CP_Input_GetMouseX(), mouseY = CP_Input_GetMouseY();
 		//if mouse hover over buttons, change color of buttons
@@ -60,7 +76,10 @@ void mainmenu_init(void)
 		{
 			if (mouseY > a1.y && mouseY < (a1.y + a1.height))
 			{
+				CP_Image play2 = CP_Image_Load("./Assets/Play2.png");
+				CP_Image_Draw(play2, a1.x + 280, a1.y + 125, a1.width, a1.height, 255);
 
+				/*
 				CP_Color rectColour2 = CP_Color_Create(124, 126, 40, 255);
 				CP_Settings_Fill(rectColour2);
 				CP_Graphics_DrawRect(a1.x, a1.y, a1.width, a1.height);
@@ -69,6 +88,8 @@ void mainmenu_init(void)
 
 				CP_Settings_TextSize(FONT_SIZE);
 				CP_Font_DrawText("Play", (float)displayWidth / 2.2f, (float)displayHeight / 3.5f);
+				*/
+
 				//if mouseclicked on first button, start the game
 				if (CP_Input_MouseClicked())
 				{
@@ -81,7 +102,10 @@ void mainmenu_init(void)
 		{
 			if (mouseY > a2.y && mouseY < (a2.y + a2.height))
 			{
+				CP_Image exit2 = CP_Image_Load("./Assets/Exit2.png");
+				CP_Image_Draw(exit2, a2.x + 280, a2.y + 125, a1.width, a1.height, 255);
 
+				/*
 				CP_Color rectColour2 = CP_Color_Create(124, 126, 40, 255);
 				CP_Settings_Fill(rectColour2);
 				CP_Graphics_DrawRect(a2.x, a2.y, a2.width, a2.height);
@@ -90,6 +114,8 @@ void mainmenu_init(void)
 
 				CP_Settings_TextSize(FONT_SIZE);
 				CP_Font_DrawText("Exit", (float)displayWidth / 2.2f, (float)displayHeight / 2.2f);
+				*/
+
 				//if mouseclicked on the seocnd button, terminates game
 				if (CP_Input_MouseClicked())
 				{
