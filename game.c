@@ -3,9 +3,13 @@
 #include "game.h"
 #include <stdlib.h>
 #include <string.h>
+#include "character.h"
+#include "gameover.h"
 #define FONT_SIZE 30.0f 
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
+#define TIME 10
+#define SCORE 10
 
 #define MAXC 20
 #define MAXW 10
@@ -13,10 +17,14 @@
 
 int displaywidth, displayheight;
 float time;
-float interval = 2.0f;
+float finaltime;
+int score;
+char scorebuffer[SCORE];
+int finalscore;
 
 CP_Color fontColour;
 char wordbuf[MAXC];
+char timebuffer[TIME];
 int y, i, j;
 
 char userinput[MAXC];
@@ -29,7 +37,7 @@ int x;
 char* wordchosen;
 
 
-float wordx, wordy;
+float enemyx, enemyy;
 float gridwidth, gridheight;
 float velx;
 
@@ -38,7 +46,7 @@ char string[MAXC];
 char* pstr;
 int numofchar;
 int intvalue[MAXC];
-int k;
+float playerx, playery;
 
 struct WORDS
 {
@@ -61,11 +69,13 @@ void game_init(void)
 	gridwidth = 40;
 	gridheight = 40;
 	//there are 30 units x 18units
-	wordx = 28;
-	wordy = 10;
+	enemyx = 28;
+	enemyy = 10;
+	playerx = 2;
+	playery = 10;
+	velx = -0.2f;
 
-	velx = -0.05f;
-	k = 2;
+	
 
 }
 // initialize variables and CProcessing settings for this gamestate
@@ -74,10 +84,14 @@ void game_update(void)
 {
 
 	time += CP_System_GetDt();
-
+	finaltime = time;
+	finalscore = score;
 
 	CP_Settings_Background(CP_Color_Create(135, 245, 157, 255));
 
+	DisplayTime(time, gridwidth, gridheight);
+	DisplayScore(score, gridwidth, gridheight);
+	Drawplayer(playerx, playery, gridwidth, gridheight);
 	wordchosen = wordlist(x);
 	n = numofcharacters(x);
 
@@ -88,13 +102,19 @@ void game_update(void)
 
 	pstr = string;
 
-	Drawenemy(wordx, wordy);
-	wordx += velx;
+	Drawenemy(pstr, enemyx, enemyy, gridwidth, gridheight);
+	enemyx += velx;
 	ConvertWordToInt();
 
 	Keyinput();
 	CP_Font_DrawText(ui, 500, 100);
 
+	if ((int)enemyx == (int)playerx)
+	{
+		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+		time = 0;
+		score = 0;
+	}
 
 	if (CP_Input_KeyTriggered(KEY_ENTER))
 	{
@@ -111,11 +131,12 @@ void game_update(void)
 		if (numofcorrect == lenofinput)
 		{
 			numofcorrect = 0;
+			score++;
 			memset(userinput, 0, MAXC * sizeof(char));
 			memset(string, 0, 20 * sizeof(char));
 			nextchar = 0;
-			wordx = 28;
-			wordy = 10;
+			enemyx = 28;
+			enemyy = 10;
 			RandomWord();
 
 
@@ -127,11 +148,11 @@ void game_update(void)
 			memset(userinput, 0, MAXC * sizeof(char));
 			nextchar = 0;
 		}
-
+	
 	}
 
 
-
+	
 
 
 
@@ -335,16 +356,32 @@ void Keyinput(void)
 		nextchar++;
 	}
 }
-void Drawenemy(float posx, float posy)
-{
 
-	CP_Font_DrawText(pstr, (posx-1) * gridwidth, (posy- 1) * gridheight);
-	CP_Image enemy = CP_Image_Load("./Assets/Enemy1.png");
-	CP_Image_Draw(enemy, posx * gridwidth, posy * gridheight, 2*gridwidth, 2*gridheight, 255);
-	//CP_Graphics_DrawRect(posx * gridwidth, posy * gridheight, gridwidth, gridheight);
+void DisplayTime(float timeelapsed, float width, float height)
+{
+	_itoa_s((int)timeelapsed, timebuffer, TIME, 10);
+	CP_Font_DrawText(timebuffer, (float)8 * width, (float)1 * height);
+	CP_Font_DrawText("Time:", (float)5 * width, (float)1 * height);
+
 }
 
+float GetFinalTime(void)
+{
+	return finaltime;
+}
 
+void DisplayScore(int currentscore, float width, float height)
+{
+	_itoa_s(score, scorebuffer, SCORE, 10);
+	CP_Font_DrawText(scorebuffer, (float)25 * width, (float)1 * height);
+	CP_Font_DrawText("Score:", (float)21 * width, (float)1 * height);
+
+}
+
+int GetFinalScore(void)
+{
+	return finalscore;
+}
 
 
 // use CP_Engine_SetNextGameState to specify this function as the initialization function

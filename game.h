@@ -11,4 +11,7 @@ int numofcharacters(int l);
 int numofcharactersinput(void);
 void ConvertWordToInt(void);
 void Keyinput(void);
-void Drawenemy(float newx, float newy);
+void DisplayTime(float timeelapsed, float width, float height);
+float GetFinalTime(void);
+void DisplayScore(int currentscore, float width, float height);
+int GetFinalScore(void);

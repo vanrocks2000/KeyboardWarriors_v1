@@ -192,12 +192,14 @@ xcopy "$(ProjectDir)Assets\*" "$(OutDir)Assets\" /s /r /y /q</Command>
   <ItemGroup>
     <ClCompile Include="character.c" />
     <ClCompile Include="game.c" />
+    <ClCompile Include="gameover.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mainmenu.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="gameover.h" />
     <ClInclude Include="mainmenu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
