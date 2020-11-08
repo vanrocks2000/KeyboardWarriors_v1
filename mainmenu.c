@@ -26,7 +26,7 @@ void mainmenu_init(void)
 	}
 	else
 	{
-		struct Button a1 , a2, a3;
+		struct Button a1 , a2;
 
 		CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 4, (float)displayWidth, (float)displayHeight/ 1.75f, 125);
 
