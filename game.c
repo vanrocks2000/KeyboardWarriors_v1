@@ -51,8 +51,8 @@ struct WORDS
 
 void game_init(void)
 {
-	displaywidth = 1280;
-	displayheight = 720;
+	displaywidth = 1366;
+	displayheight = 768;
 	CP_System_SetWindowSize(displaywidth, displayheight);
 	CP_Settings_TextSize(FONT_SIZE);
 	fontColour = CP_Color_Create(13, 50, 213, 255);
@@ -343,6 +343,8 @@ void Drawenemy(float posx, float posy)
 	CP_Image_Draw(enemy, posx * gridwidth, posy * gridheight, 2*gridwidth, 2*gridheight, 255);
 	//CP_Graphics_DrawRect(posx * gridwidth, posy * gridheight, gridwidth, gridheight);
 }
+
+	
 
 
 

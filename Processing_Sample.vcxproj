@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)Assets\*" "$(OutDir)Assets\" /s /r /y /q</Command>
       <AdditionalDependencies>CProcessing.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <AdditionalLibraryDirectories>C:\Users\Yang\Downloads\CProcessing\CProcessing\lib\x64\CProcessing.lib</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)CProcessing\lib\x64\CProcessing.dll" "$(OutDir)" /s /r /y /q
