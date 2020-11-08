@@ -10,6 +10,7 @@
 #define STRING_MAX_SIZE 10
 #define TIME 10
 #define SCORE 10
+#define LIVES 10
 
 #define MAXC 20
 #define MAXW 10
@@ -18,14 +19,17 @@
 int displaywidth, displayheight;
 float time;
 float finaltime;
+char timebuffer[TIME];
 int score;
-char scorebuffer[SCORE];
 int finalscore;
+char scorebuffer[SCORE];
+int lives;
+char lifebuffer[LIVES];
+
 
 CP_Color fontColour;
-char wordbuf[MAXC];
-char timebuffer[TIME];
-int y, i, j;
+
+int y, i;
 
 char userinput[MAXC];
 char* ui = userinput;
@@ -74,6 +78,7 @@ void game_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.2f;
+	lives = 3;
 
 	
 
@@ -91,7 +96,10 @@ void game_update(void)
 
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
+	DisplayLives(lives, gridwidth, gridheight);
+	
 	Drawplayer(playerx, playery, gridwidth, gridheight);
+	
 	wordchosen = wordlist(x);
 	n = numofcharacters(x);
 
@@ -107,13 +115,28 @@ void game_update(void)
 	ConvertWordToInt();
 
 	Keyinput();
-	CP_Font_DrawText(ui, 500, 100);
+	CP_Font_DrawText(ui, 600, 200);
 
 	if ((int)enemyx == (int)playerx)
 	{
-		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
-		time = 0;
-		score = 0;
+		lives -= 1;
+		if (lives == 0)
+		{
+			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+			time = 0;
+			score = 0;
+		}
+		else
+		{
+			numofcorrect = 0;
+			memset(userinput, 0, MAXC * sizeof(char));
+			memset(string, 0, 20 * sizeof(char));
+			nextchar = 0;
+			enemyx = 28;
+			enemyy = 10;
+			RandomWord();
+
+		}
 	}
 
 	if (CP_Input_KeyTriggered(KEY_ENTER))
@@ -373,8 +396,8 @@ float GetFinalTime(void)
 void DisplayScore(int currentscore, float width, float height)
 {
 	_itoa_s(score, scorebuffer, SCORE, 10);
-	CP_Font_DrawText(scorebuffer, (float)25 * width, (float)1 * height);
-	CP_Font_DrawText("Score:", (float)21 * width, (float)1 * height);
+	CP_Font_DrawText(scorebuffer, (float)26 * width, (float)1 * height);
+	CP_Font_DrawText("Score:", (float)23 * width, (float)1 * height);
 
 }
 
@@ -382,6 +405,15 @@ int GetFinalScore(void)
 {
 	return finalscore;
 }
+
+void DisplayLives(int livesleft, float width, float height)
+{
+	_itoa_s(lives, lifebuffer, LIVES, 10);
+	CP_Font_DrawText(lifebuffer, (float)17 * width, (float)1 * height);
+	CP_Font_DrawText("Lives Left:", (float)13 * width, (float)1 * height);
+
+}
+
 
 
 // use CP_Engine_SetNextGameState to specify this function as the initialization function

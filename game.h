@@ -15,3 +15,4 @@ void DisplayTime(float timeelapsed, float width, float height);
 float GetFinalTime(void);
 void DisplayScore(int currentscore, float width, float height);
 int GetFinalScore(void);
+void DisplayLives(int livesleft, float width, float height);
