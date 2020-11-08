@@ -65,9 +65,13 @@ struct WORDS
 
 void game_init(void)
 {
+
 	displaywidth = 1280;
 	displayheight = 720;
 	CP_System_SetWindowSize(displaywidth, displayheight);
+
+
+
 	CP_Settings_TextSize(FONT_SIZE);
 	fontColour = CP_Color_Create(13, 50, 213, 255);
 	CP_Settings_Fill(fontColour);
@@ -89,12 +93,17 @@ void game_init(void)
 
 void game_update(void)
 {
+	displaywidth = 1280;
+	displayheight = 720;
 
 	time += CP_System_GetDt();
 	finaltime = time;
 	finalscore = score;
 
-	CP_Settings_Background(CP_Color_Create(135, 245, 157, 255));
+	CP_Image levelbg = CP_Image_Load("./Assets/levelbg.png");
+	CP_Image_Draw(levelbg, (float)displaywidth / 2, (float)displayheight / 2, (float)CP_Image_GetWidth(levelbg), (float)CP_Image_GetHeight(levelbg) , 255);
+
+	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
@@ -185,7 +194,10 @@ void game_update(void)
 	}
 
 
-	
+	if (CP_Input_KeyTriggered(KEY_ESCAPE))
+	{
+		CP_Engine_Terminate();
+	}
 
 
 

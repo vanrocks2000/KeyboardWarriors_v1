@@ -7,8 +7,8 @@
 
 void mainmenu_init(void)
 {
-	int displayHeight = CP_System_GetDisplayHeight();
-	int displayWidth = CP_System_GetDisplayWidth();
+	int displayWidth = 1280;
+	int displayHeight = 720;
 
 	CP_System_SetWindowSize(displayWidth, displayHeight);
 
@@ -22,26 +22,26 @@ void mainmenu_init(void)
 	if (time < 3)
 	{
 		CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
-		CP_Image_Draw(DPlogo, (float)displayWidth / 2, (float)displayHeight / 4, (float)CP_Image_GetWidth(DPlogo) * 2, (float)CP_Image_GetHeight(DPlogo) * 2, 255);
+		CP_Image_Draw(DPlogo, (float)displayWidth / 2, (float)displayHeight / 2, (float)CP_Image_GetWidth(DPlogo), (float)CP_Image_GetHeight(DPlogo), 255);
 	}
 	else
 	{
 		struct Button a1 , a2;
 
-		CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 4, (float)displayWidth, (float)displayHeight/ 1.75f, 125);
+		CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 2, (float)displayWidth, (float)displayHeight, 125);
 
-		CP_Image_Draw(GameLogo, (float)displayWidth / 2.1f, (float)displayHeight / 6.5f, (float)CP_Image_GetWidth(GameLogo) * 2.5f, (float)CP_Image_GetHeight(GameLogo) * 2.5f, 255);
+		CP_Image_Draw(GameLogo, (float)displayWidth / 2, (float)displayHeight / 6.5f, (float)CP_Image_GetWidth(GameLogo) , (float)CP_Image_GetHeight(GameLogo) , 255);
 
 		//setting size and position of buttons
-		a1.width = 550;
-		a1.height = 250;
-		a1.x = (float)displayWidth / 2.5f;
-		a1.y = (float)displayHeight / 4;
+		a1.width = 300;
+		a1.height = 150;
+		a1.x = (float)displayWidth / 2;
+		a1.y = (float)displayHeight / 2.25f;
 
-		a2.width = 550;
-		a2.height = 250;
-		a2.x = (float)displayWidth / 2.5f;
-		a2.y = (float)displayHeight / 2.5f;
+		a2.width = 300;
+		a2.height = 150;
+		a2.x = (float)displayWidth / 2;
+		a2.y = (float)displayHeight / 1.25f;
 
 		//draw the logo, play & exit buttons on the screen
 
@@ -49,10 +49,10 @@ void mainmenu_init(void)
 		//CP_Image_Draw(logo, a1.x, a1.y, a3.width, a3.height, 255);
 
 		CP_Image play = CP_Image_Load("./Assets/Play.png");
-		CP_Image_Draw(play, a1.x + 280, a1.y + 125, a1.width, a1.height, 255);
+		CP_Image_Draw(play, a1.x , a1.y , a1.width, a1.height, 255);
 
 		CP_Image exit = CP_Image_Load("./Assets/Exit.png");
-		CP_Image_Draw(exit, a2.x + 280, a2.y + 125, a1.width, a1.height, 255);
+		CP_Image_Draw(exit, a2.x , a2.y , a1.width, a1.height, 255);
 
 		/*
 		CP_Color rectColour = CP_Color_Create(215, 196, 130, 255);
@@ -69,12 +69,12 @@ void mainmenu_init(void)
 
 		float mouseX = CP_Input_GetMouseX(), mouseY = CP_Input_GetMouseY();
 		//if mouse hover over buttons, change color of buttons
-		if (mouseX > a1.x && mouseX < (a1.x + a1.width))
+		if (mouseX > a1.x -150 && mouseX < (a1.x + a1.width))
 		{
-			if (mouseY > a1.y && mouseY < (a1.y + a1.height))
+			if (mouseY > a1.y - 75 && mouseY < (a1.y + a1.height))
 			{
 				CP_Image play2 = CP_Image_Load("./Assets/Play2.png");
-				CP_Image_Draw(play2, a1.x + 280, a1.y + 125, a1.width, a1.height, 255);
+				CP_Image_Draw(play2, a1.x , a1.y , a1.width, a1.height, 255);
 
 				/*
 				CP_Color rectColour2 = CP_Color_Create(124, 126, 40, 255);
@@ -95,12 +95,12 @@ void mainmenu_init(void)
 
 			}
 		}
-		if (mouseX > a2.x && mouseX < (a2.x + a2.width))
+		if (mouseX > a2.x -150 && mouseX < (a2.x + a2.width))
 		{
-			if (mouseY > a2.y && mouseY < (a2.y + a2.height))
+			if (mouseY > a2.y - 75 && mouseY < (a2.y + a2.height))
 			{
 				CP_Image exit2 = CP_Image_Load("./Assets/Exit2.png");
-				CP_Image_Draw(exit2, a2.x + 280, a2.y + 125, a1.width, a1.height, 255);
+				CP_Image_Draw(exit2, a2.x , a2.y , a1.width, a1.height, 255);
 
 				/*
 				CP_Color rectColour2 = CP_Color_Create(124, 126, 40, 255);
