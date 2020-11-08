@@ -11,9 +11,10 @@
 #define TIME 10
 #define SCORE 10
 #define LIVES 10
+#define word 100
 
 #define MAXC 20
-#define MAXW 10
+#define MAXW 20
 
 
 int displaywidth, displayheight;
@@ -25,6 +26,7 @@ int finalscore;
 char scorebuffer[SCORE];
 int lives;
 char lifebuffer[LIVES];
+char wordbuf[word];
 
 
 CP_Color fontColour;
@@ -58,7 +60,7 @@ struct WORDS
 	int numc;
 
 
-} p[MAXW], word[MAXW];
+} p[MAXW];
 
 
 void game_init(void)
@@ -114,6 +116,9 @@ void game_update(void)
 	enemyx += velx;
 	ConvertWordToInt();
 
+	
+
+
 	Keyinput();
 	CP_Font_DrawText(ui, 600, 200);
 
@@ -125,6 +130,8 @@ void game_update(void)
 			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
 			time = 0;
 			score = 0;
+			memset(userinput, 0, MAXC * sizeof(char));
+			memset(string, 0, 20 * sizeof(char));
 		}
 		else
 		{
@@ -151,18 +158,21 @@ void game_update(void)
 			}
 
 		}
-		if (numofcorrect == lenofinput)
+		if (n == lenofinput)
 		{
-			numofcorrect = 0;
-			score++;
-			memset(userinput, 0, MAXC * sizeof(char));
-			memset(string, 0, 20 * sizeof(char));
-			nextchar = 0;
-			enemyx = 28;
-			enemyy = 10;
-			RandomWord();
+			if (numofcorrect == n)
+			{
+				numofcorrect = 0;
+				score++;
+				memset(userinput, 0, MAXC * sizeof(char));
+				memset(string, 0, MAXC * sizeof(char));
+				nextchar = 0;
+				enemyx = 28;
+				enemyy = 10;
+				RandomWord();
 
 
+			}
 		}
 
 		else
@@ -190,7 +200,7 @@ void game_exit(void)
 
 void RandomWord(void)
 {
-	x = CP_Random_RangeInt(0, 9);
+	x = CP_Random_RangeInt(0, 15);
 }
 /*void RandomWord2(void)
 {
@@ -198,16 +208,22 @@ void RandomWord(void)
 }*/
 char* wordlist(int choice)
 {
-	p[0].buffer = "TYPEFASTFAST";
-	p[1].buffer = "HELLO";
-	p[2].buffer = "CATS";
-	p[3].buffer = "HEY";
-	p[4].buffer = "MORNING";
-	p[5].buffer = "AFTERNOON";
-	p[6].buffer = "GREAT";
-	p[7].buffer = "BOY";
-	p[8].buffer = "ADVENTURE";
-	p[9].buffer = "RACE";
+	p[0].buffer = "TECHNOLOGY";
+	p[1].buffer = "CYBERBULLY";
+	p[2].buffer = "PRIVACY";
+	p[3].buffer = "SECUIRTY";
+	p[4].buffer = "INTERNET";
+	p[5].buffer = "ONLINE";
+	p[6].buffer = "CHAT";
+	p[7].buffer = "SOCIALMEDIA";
+	p[8].buffer = "WEBSITE";
+	p[9].buffer = "SPAM";
+	p[10].buffer = "DATA";
+	p[11].buffer = "USER";
+	p[12].buffer = "ADVERTISMENT";
+	p[13].buffer = "MEDIA";
+	p[14].buffer = "FAKENEWS";
+	p[15].buffer = "TROLLING";
 
 
 	char* wordpicked = p[choice].buffer;
