@@ -45,14 +45,23 @@ void gameover_init(void)
 	CP_Graphics_DrawRect(b2.x, b2.y, b2.width, b2.height);
 	CP_Graphics_DrawRect(b3.x, b3.y, b3.width, b3.height);
 
+	CP_Image mainmenu = CP_Image_Load("./Assets/MainMenu.png");
+	CP_Image_Draw(mainmenu, b1.x + 200, b1.y + 70, b1.width, b1.height, 255);
+
+	CP_Image replay = CP_Image_Load("./Assets/Replay.png");
+	CP_Image_Draw(replay, b1.x + 200, b1.y + 270, b1.width, b1.height, 255);
+
+	CP_Image exit = CP_Image_Load("./Assets/Exit.png");
+	CP_Image_Draw(exit, b1.x + 200, b1.y + 470, b1.width, b1.height, 255);
+
 
 	CP_Color fontColour = CP_Color_Create(0, 0, 0, 255);
 	CP_Settings_Fill(fontColour);
 
 	CP_Settings_TextSize(FONT_SIZE);
-	CP_Font_DrawText("Main Menu", 540, 125);
-	CP_Font_DrawText("Replay", 540, 325);
-	CP_Font_DrawText("Exit Game", 540, 525);
+	//CP_Font_DrawText("Main Menu", 540, 125);
+	//CP_Font_DrawText("Replay", 540, 325);
+	//CP_Font_DrawText("Exit Game", 540, 525);
 
 	totaltimesurvived = GetFinalTime();
 	_itoa_s((int)totaltimesurvived, finaltimebuffer, TIME, 10);
@@ -81,7 +90,10 @@ void gameover_update(void)
 	{
 		if (mouseY > b1.y && mouseY < (b1.y + b1.height))
 		{
+			CP_Image mainmenu2 = CP_Image_Load("./Assets/MainMenu2.png");
+			CP_Image_Draw(mainmenu2, b1.x + 200, b1.y + 70, b1.width, b1.height, 255);
 
+			/*
 			CP_Color rectColour = CP_Color_Create(124, 126, 40, 255);
 			CP_Settings_Fill(rectColour);
 			CP_Graphics_DrawRect(b1.x, b1.y, b1.width, b1.height);
@@ -90,6 +102,8 @@ void gameover_update(void)
 
 			CP_Settings_TextSize(FONT_SIZE);
 			CP_Font_DrawText("Main Menu", 540, 125);
+			*/
+
 			if (CP_Input_MouseClicked())
 			{
 				CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
@@ -101,7 +115,10 @@ void gameover_update(void)
 	{
 		if (mouseY > b2.y && mouseY < (b2.y + b2.height))
 		{
+			CP_Image replay2 = CP_Image_Load("./Assets/Replay2.png");
+			CP_Image_Draw(replay2, b1.x + 200, b1.y + 270, b1.width, b1.height, 255);
 
+			/*
 			CP_Color rectColour = CP_Color_Create(124, 126, 40, 255);
 			CP_Settings_Fill(rectColour);
 			CP_Graphics_DrawRect(b2.x, b2.y, b2.width, b2.height);
@@ -110,6 +127,7 @@ void gameover_update(void)
 
 			CP_Settings_TextSize(FONT_SIZE);
 			CP_Font_DrawText("Replay", 540, 325);
+			*/
 
 			if (CP_Input_MouseClicked())
 			{
@@ -122,7 +140,10 @@ void gameover_update(void)
 	{
 		if (mouseY > b3.y && mouseY < (b3.y + b3.height))
 		{
+			CP_Image exit2 = CP_Image_Load("./Assets/Exit2.png");
+			CP_Image_Draw(exit2, b1.x + 200, b1.y + 470, b1.width, b1.height, 255);
 
+			/*
 			CP_Color rectColour = CP_Color_Create(124, 126, 40, 255);
 			CP_Settings_Fill(rectColour);
 			CP_Graphics_DrawRect(b3.x, b3.y, b3.width, b3.height);
@@ -131,6 +152,8 @@ void gameover_update(void)
 
 			CP_Settings_TextSize(FONT_SIZE);
 			CP_Font_DrawText("Exit Game", 540, 525);
+			*/
+
 			if (CP_Input_MouseClicked())
 			{
 				CP_Engine_Terminate();

@@ -26,7 +26,7 @@ void mainmenu_init(void)
 	}
 	else
 	{
-		struct Button a1 , a2, a3;
+		struct Button a1 , a2 /*,  a3 */;
 
 		CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 4, (float)displayWidth, (float)displayHeight/ 1.75f, 125);
 
@@ -43,13 +43,10 @@ void mainmenu_init(void)
 		a2.x = (float)displayWidth / 2.5f;
 		a2.y = (float)displayHeight / 2.5f;
 
-		/*
-		a3.width = 960;
-		a3.height = 180;
+		//draw the logo, play & exit buttons on the screen
 
-		CP_Image logo = CP_Image_Load("./Assets/Logo.png");
-		CP_Image_Draw(logo, a1.x, a1.y, a3.width, a3.height, 255);
-		*/
+		//CP_Image logo = CP_Image_Load("./Assets/Logo.png");
+		//CP_Image_Draw(logo, a1.x, a1.y, a3.width, a3.height, 255);
 
 		CP_Image play = CP_Image_Load("./Assets/Play.png");
 		CP_Image_Draw(play, a1.x + 280, a1.y + 125, a1.width, a1.height, 255);
