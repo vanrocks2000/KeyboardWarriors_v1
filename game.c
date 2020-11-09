@@ -227,14 +227,14 @@ char* wordlist(int choice)
 	p[4].buffer = "INTERNET";
 	p[5].buffer = "ONLINE";
 	p[6].buffer = "CHAT";
-	p[7].buffer = "SOCIALMEDIA";
+	p[7].buffer = "SOCIAL MEDIA";
 	p[8].buffer = "WEBSITE";
 	p[9].buffer = "SPAM";
 	p[10].buffer = "DATA";
 	p[11].buffer = "USER";
 	p[12].buffer = "ADVERTISMENT";
 	p[13].buffer = "MEDIA";
-	p[14].buffer = "FAKENEWS";
+	p[14].buffer = "FAKE NEWS";
 	p[15].buffer = "TROLLING";
 
 
@@ -276,6 +276,12 @@ void ConvertWordToInt(void)
 void Keyinput(void)
 {
 	//whatever that is typed first is stored in 0 position in array, subsequent char is stored in nth position +1
+	if (CP_Input_KeyTriggered(KEY_SPACE))
+	{
+		*(ui + nextchar) = ' ';
+		nextchar++;
+	}
+
 	if (CP_Input_KeyTriggered(KEY_A))
 	{
 		*(ui + nextchar) = 'A';

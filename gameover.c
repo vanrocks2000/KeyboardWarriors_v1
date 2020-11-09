@@ -37,7 +37,7 @@ void gameover_init(void)
 	b3.x = 420;
 	b3.y = 450;
 
-	CP_Settings_Background(CP_Color_Create(135, 245, 157, 255));;
+	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 
 	CP_Color rectColour = CP_Color_Create(215, 196, 130, 255);
 	CP_Settings_Fill(rectColour);
