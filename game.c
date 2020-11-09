@@ -67,21 +67,24 @@ struct WORDS
 
 void game_init(void)
 {
-
+	// set game window size
 	displaywidth = 1280;
 	displayheight = 720;
 	CP_System_SetWindowSize(displaywidth, displayheight);
+	//it is 30 units x 18units
+	gridwidth = 40;
+	gridheight = 40;
 
-
-
+	//settings for font, colour
 	CP_Settings_TextSize(FONT_SIZE);
 	fontColour = CP_Color_Create(13, 50, 213, 255);
 	CP_Settings_Fill(fontColour);
+	
+	//set random word
 	x1 = RandomWord();
 	x2 = RandomWord();
-	gridwidth = 40;
-	gridheight = 40;
-	//there are 30 units x 18units
+	
+	//set coordinates of enemy/player
 	enemyx1 = 28;
 	enemyy1 = 10;
 	enemyx2 = 28;
@@ -98,26 +101,27 @@ void game_init(void)
 
 void game_update(void)
 {
-	displaywidth = 1280;
-	displayheight = 720;
-
+	
+	//set time
 	time += CP_System_GetDt();
 	finaltime = time;
 	finalscore = score;
 
 
-
+	//set background
 	CP_Image levelbg = CP_Image_Load("./Assets/levelbg.png");
 	CP_Image_Draw(levelbg, (float)displaywidth / 2, (float)displayheight / 2, (float)CP_Image_GetWidth(levelbg), (float)CP_Image_GetHeight(levelbg) , 255);
 
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 
+	
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
 	DisplayLives(lives, gridwidth, gridheight);
 	
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 	
+	//use randomized value to obtain a word from the wordlist and store it in strings
 	wordchosen = wordlist(x1);
 	wordchosen2 = wordlist(x2);
 	
@@ -144,9 +148,10 @@ void game_update(void)
 	ConvertWordToInt();
 	
 	Keyinput();
+	//displays words typed on screen
+	CP_Font_DrawText(ui, 500, 100);
 	
-	CP_Font_DrawText(ui, 600, 200);
-	
+	//minus life if enemy reaches playerline
 	if ((int)enemyx1 == (int)playerx)
 	{
 		lives -= 1;
@@ -196,6 +201,7 @@ void game_update(void)
 		}
 	}
 
+	//enter to check word typed = random word
 	if (CP_Input_KeyTriggered(KEY_ENTER))
 	{
 		//check if they are the same
@@ -276,15 +282,7 @@ void game_update(void)
 	{
 		CP_Engine_Terminate();
 	}
-	}
-
-
-	
-
-
-
-
-
+}
 
 
 void game_exit(void)
@@ -297,10 +295,7 @@ int RandomWord(void)
 	x = CP_Random_RangeInt(0, 15);
 	return x;
 }
-/*void RandomWord2(void)
-{
-	x2 = CP_Random_RangeInt(0, 9);
-}*/
+
 char* wordlist(int choice)
 {
 	p[0].buffer = "TECHNOLOGY";
