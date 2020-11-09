@@ -112,6 +112,7 @@ void game_update(void)
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 	
 	wordchosen = wordlist(x);
+	
 	n = numofcharacters(x);
 
 	for (int test = 0; test < n; test++)
@@ -123,14 +124,13 @@ void game_update(void)
 
 	Drawenemy(pstr, enemyx, enemyy, gridwidth, gridheight);
 	enemyx += velx;
-	ConvertWordToInt();
-
 	
-
-
+	ConvertWordToInt();
+	
 	Keyinput();
+	
 	CP_Font_DrawText(ui, 600, 200);
-
+	
 	if ((int)enemyx == (int)playerx)
 	{
 		lives -= 1;
@@ -223,7 +223,7 @@ char* wordlist(int choice)
 	p[0].buffer = "TECHNOLOGY";
 	p[1].buffer = "CYBERBULLY";
 	p[2].buffer = "PRIVACY";
-	p[3].buffer = "SECUIRTY";
+	p[3].buffer = "SECURITY";
 	p[4].buffer = "INTERNET";
 	p[5].buffer = "ONLINE";
 	p[6].buffer = "CHAT";
@@ -232,7 +232,7 @@ char* wordlist(int choice)
 	p[9].buffer = "SPAM";
 	p[10].buffer = "DATA";
 	p[11].buffer = "USER";
-	p[12].buffer = "ADVERTISMENT";
+	p[12].buffer = "ADVERTISEMENT";
 	p[13].buffer = "MEDIA";
 	p[14].buffer = "FAKE NEWS";
 	p[15].buffer = "TROLLING";
