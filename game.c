@@ -35,23 +35,25 @@ int y, i;
 
 char userinput[MAXC];
 char* ui = userinput;
-int n;
+int n1, n2;
 
 int nextchar = 0;
 int numofcorrect = 0;
-int x;
+int x, x1, x2, x3;
 char* wordchosen;
+char* wordchosen2;
 
 
-float enemyx, enemyy;
+float enemyx1, enemyy1, enemyx2, enemyy2;
 float gridwidth, gridheight;
 float velx;
 
-char string[MAXC];
+char string1[MAXC], string2[MAXC];
 
-char* pstr;
+char* pstr1;
+char* pstr2;
 int numofchar;
-int intvalue[MAXC];
+int intvalue1[MAXC], intvalue2[MAXC];
 float playerx, playery;
 
 struct WORDS
@@ -75,16 +77,19 @@ void game_init(void)
 	CP_Settings_TextSize(FONT_SIZE);
 	fontColour = CP_Color_Create(13, 50, 213, 255);
 	CP_Settings_Fill(fontColour);
-	RandomWord();
+	x1 = RandomWord();
+	x2 = RandomWord();
 	gridwidth = 40;
 	gridheight = 40;
 	//there are 30 units x 18units
-	enemyx = 28;
-	enemyy = 10;
+	enemyx1 = 28;
+	enemyy1 = 10;
+	enemyx2 = 28;
+	enemyy2 = 5;
 	playerx = 2;
 	playery = 10;
-	velx = -0.2f;
-	lives = 3;
+	velx = -0.05f;
+	lives = 5;
 
 	
 
@@ -100,6 +105,8 @@ void game_update(void)
 	finaltime = time;
 	finalscore = score;
 
+
+
 	CP_Image levelbg = CP_Image_Load("./Assets/levelbg.png");
 	CP_Image_Draw(levelbg, (float)displaywidth / 2, (float)displayheight / 2, (float)CP_Image_GetWidth(levelbg), (float)CP_Image_GetHeight(levelbg) , 255);
 
@@ -111,19 +118,28 @@ void game_update(void)
 	
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 	
-	wordchosen = wordlist(x);
+	wordchosen = wordlist(x1);
+	wordchosen2 = wordlist(x2);
 	
-	n = numofcharacters(x);
+	n1 = numofcharacters(x1);
+	n2 = numofcharacters(x2);
 
-	for (int test = 0; test < n; test++)
+	for (int test = 0; test < n1; test++)
 	{
-		string[test] = *(wordchosen + test);
+		string1[test] = *(wordchosen + test);
+	}
+	for (int test = 0; test < n2; test++)
+	{
+		string2[test] = *(wordchosen2 + test);
 	}
 
-	pstr = string;
+	pstr1 = string1;
+	pstr2 = string2;
 
-	Drawenemy(pstr, enemyx, enemyy, gridwidth, gridheight);
-	enemyx += velx;
+	Drawenemy(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+	Drawenemy(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+	enemyx1 += velx;
+	enemyx2 += velx;
 	
 	ConvertWordToInt();
 	
@@ -131,7 +147,7 @@ void game_update(void)
 	
 	CP_Font_DrawText(ui, 600, 200);
 	
-	if ((int)enemyx == (int)playerx)
+	if ((int)enemyx1 == (int)playerx)
 	{
 		lives -= 1;
 		if (lives == 0)
@@ -140,17 +156,42 @@ void game_update(void)
 			time = 0;
 			score = 0;
 			memset(userinput, 0, MAXC * sizeof(char));
-			memset(string, 0, 20 * sizeof(char));
+			memset(string1, 0, 20 * sizeof(char));
 		}
 		else
 		{
 			numofcorrect = 0;
 			memset(userinput, 0, MAXC * sizeof(char));
-			memset(string, 0, 20 * sizeof(char));
+			memset(string1, 0, 20 * sizeof(char));
 			nextchar = 0;
-			enemyx = 28;
-			enemyy = 10;
-			RandomWord();
+			enemyx1 = 28;
+			enemyy1 = 10;
+			x1 = RandomWord();
+
+		}
+	}
+
+	if ((int)enemyx2 == (int)playerx)
+	{
+		lives -= 1;
+		if (lives == 0)
+		{
+			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+			time = 0;
+			score = 0;
+			memset(userinput, 0, MAXC * sizeof(char));
+			memset(string2, 0, 20 * sizeof(char));
+		}
+		else
+		{
+			numofcorrect = 0;
+			memset(userinput, 0, MAXC * sizeof(char));
+			memset(string2, 0, 20 * sizeof(char));
+			nextchar = 0;
+			enemyx2 = 28;
+			enemyy2 = 5;
+			x2 = RandomWord();
+			
 
 		}
 	}
@@ -159,60 +200,102 @@ void game_update(void)
 	{
 		//check if they are the same
 		int lenofinput = numofcharactersinput();
-		for (int check = 0; check < lenofinput; check++)
+		if (playery == 10)
 		{
-			if (intvalue[check] == (int)userinput[check])
+
+			for (int check = 0; check < lenofinput; check++)
 			{
-				numofcorrect++;
+				if (intvalue1[check] == (int)userinput[check])
+				{
+					numofcorrect++;
+				}
+
+			}
+			if (n1 == lenofinput)
+			{
+				if (numofcorrect == n1)
+				{
+					numofcorrect = 0;
+					score++;
+					memset(userinput, 0, MAXC * sizeof(char));
+					memset(string1, 0, MAXC * sizeof(char));
+					nextchar = 0;
+					enemyx1 = 28;
+					enemyy1 = 10;
+					x1 = RandomWord();
+					
+
+				}
 			}
 
-		}
-		if (n == lenofinput)
-		{
-			if (numofcorrect == n)
+			else
 			{
 				numofcorrect = 0;
-				score++;
 				memset(userinput, 0, MAXC * sizeof(char));
-				memset(string, 0, MAXC * sizeof(char));
 				nextchar = 0;
-				enemyx = 28;
-				enemyy = 10;
-				RandomWord();
-
-
 			}
 		}
 
-		else
+		if (playery == 5)
 		{
-			numofcorrect = 0;
-			memset(userinput, 0, MAXC * sizeof(char));
-			nextchar = 0;
+			for (int check = 0; check < lenofinput; check++)
+			{
+				if (intvalue2[check] == (int)userinput[check])
+				{
+					numofcorrect++;
+				}
+
+			}
+			if (n2 == lenofinput)
+			{
+				if (numofcorrect == n2)
+				{
+					numofcorrect = 0;
+					score++;
+					memset(userinput, 0, MAXC * sizeof(char));
+					memset(string2, 0, MAXC * sizeof(char));
+					nextchar = 0;
+					enemyx2 = 28;
+					enemyy2 = 5;
+					x2 = RandomWord();
+
+
+				}
+			}
+
+			else
+			{
+				numofcorrect = 0;
+				memset(userinput, 0, MAXC * sizeof(char));
+				nextchar = 0;
+			}
 		}
-	
-	}
 
-
+		}
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
 	{
 		CP_Engine_Terminate();
 	}
+	}
+
+
+	
 
 
 
 
 
-}
+
 
 void game_exit(void)
 {
 	// shut down the gamestate and cleanup any dynamic memory
 }
 
-void RandomWord(void)
+int RandomWord(void)
 {
 	x = CP_Random_RangeInt(0, 15);
+	return x;
 }
 /*void RandomWord2(void)
 {
@@ -263,10 +346,17 @@ int numofcharactersinput(void)
 
 void ConvertWordToInt(void)
 {
-	for (i = 0; i < n; i++)
+	for (i = 0; i < n1; i++)
 	{
 
-		intvalue[i] = (int)*(pstr + i);
+		intvalue1[i] = (int)*(pstr1 + i);
+
+	}
+
+	for (i = 0; i < n2; i++)
+	{
+
+		intvalue2[i] = (int)*(pstr2 + i);
 
 	}
 
@@ -412,6 +502,22 @@ void Keyinput(void)
 		*(ui + nextchar) = 'Z';
 		nextchar++;
 	}
+	
+	if (playery >= 10 && playery <= 15)
+	{
+		if (CP_Input_KeyTriggered(KEY_UP))
+		{
+				playery -= 5;
+		}
+	}
+	if (playery >= 5 && playery <= 10)
+	{
+		if (CP_Input_KeyTriggered(KEY_DOWN))
+		{
+			playery += 5;
+		}
+	}
+	
 }
 
 void DisplayTime(float timeelapsed, float width, float height)
