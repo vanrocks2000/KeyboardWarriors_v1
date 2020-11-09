@@ -14,7 +14,6 @@ void mainmenu_init(void)
 
 	//Loads digipen logo
 	CP_Image DPlogo = CP_Image_Load("./Assets/DigiPen_BLACK.png");
-	CP_Image GameLogo = CP_Image_Load("./Assets/KWlogo.png");
 	CP_Image bg = CP_Image_Load("./Assets/bg.png");
 
 	float time = CP_System_GetSeconds();
@@ -29,8 +28,6 @@ void mainmenu_init(void)
 		struct Button a1 , a2;
 
 		CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 2, (float)displayWidth, (float)displayHeight, 125);
-
-		CP_Image_Draw(GameLogo, (float)displayWidth / 2, (float)displayHeight / 6.5f, (float)CP_Image_GetWidth(GameLogo) , (float)CP_Image_GetHeight(GameLogo) , 255);
 
 		//setting size and position of buttons
 		a1.width = 300;
