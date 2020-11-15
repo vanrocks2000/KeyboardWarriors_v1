@@ -128,7 +128,7 @@ void game2_update(void)
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
 	DisplayLives(lives, gridwidth, gridheight);
-	DisplayNumberOfEnemiesKilled(numkilled, gridwidth, gridheight);
+	DisplayNumberOfEnemiesLeftToKill(numkilled, gridwidth, gridheight);
 
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 
@@ -284,7 +284,7 @@ void game2_update(void)
 					enemyy1 = 5;
 					y1 = RandomWord2();
 				}
-				if (numofcorrect2 != n1)
+				else if (numofcorrect2 != n1)
 				{
 					numofcorrect2 = 0;
 					memset(userinput2, 0, MAXC * sizeof(char));
@@ -325,7 +325,7 @@ void game2_update(void)
 					enemyy2 = 10;
 					y2 = RandomWord2();
 				}
-				if (numofcorrect2 != n2)
+				else if (numofcorrect2 != n2)
 				{
 					numofcorrect2 = 0;
 					memset(userinput2, 0, MAXC * sizeof(char));
@@ -366,7 +366,7 @@ void game2_update(void)
 					enemyy3 = 15;
 					y3 = RandomWord2();
 				}
-				if (numofcorrect2 != n3)
+				else if (numofcorrect2 != n3)
 				{
 					numofcorrect2 = 0;
 					memset(userinput2, 0, MAXC * sizeof(char));

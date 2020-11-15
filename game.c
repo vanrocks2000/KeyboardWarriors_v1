@@ -31,6 +31,8 @@ char lifebuffer[LIVES];
 char wordbuf[word];
 int numkilled;
 char killedbuffer[KILLS];
+int numofconsecutivewrong;
+int numofconsecutivecorrect;
 
 
 CP_Color fontColour;
@@ -103,6 +105,8 @@ void game_init(void)
 	velx = -0.05f;
 	lives =5;
 	numkilled = 10;
+	numofconsecutivecorrect = 0;
+	numofconsecutivewrong = 0;
 	memset(userinput, 0, MAXC * sizeof(char));
 	nextchar = 0;
 
@@ -130,7 +134,7 @@ void game_update(void)
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
 	DisplayLives(lives, gridwidth, gridheight);
-	DisplayNumberOfEnemiesKilled(numkilled, gridwidth, gridheight);
+	DisplayNumberOfEnemiesLeftToKill(numkilled, gridwidth, gridheight);
 	
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 	
@@ -186,7 +190,7 @@ void game_update(void)
 	//minus life if enemy reaches playerline
 	if ((int)enemyx1 == (int)playerx)
 	{
-		lives--;
+		lives -= 1;
 		if (lives == 0)
 		{
 			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
@@ -287,13 +291,16 @@ void game_update(void)
 					nextchar = 0;
 					enemyx1 = 28;
 					enemyy1 = 5;
+					numofconsecutivecorrect++;
+					numofconsecutivewrong = 0;
 					x1 = RandomWord();
 				}
-				if (numofcorrect != n1)
+				else if (numofcorrect != n1)
 				{
 					numofcorrect = 0;
 					memset(userinput, 0, MAXC * sizeof(char));
 					nextchar = 0;
+					numofconsecutivewrong++;
 				}
 			}
 
@@ -302,6 +309,7 @@ void game_update(void)
 				numofcorrect = 0;
 				memset(userinput, 0, MAXC * sizeof(char));
 				nextchar = 0;
+				numofconsecutivewrong++;
 			}
 		}
 		
@@ -328,13 +336,16 @@ void game_update(void)
 					nextchar = 0;
 					enemyx2 = 28;
 					enemyy2 = 10;
+					numofconsecutivecorrect++;
+					numofconsecutivewrong = 0;
 					x2 = RandomWord();
 				}
-				if (numofcorrect != n2)
+				else if (numofcorrect != n2)
 				{
 					numofcorrect = 0;
 					memset(userinput, 0, MAXC * sizeof(char));
 					nextchar = 0;
+					numofconsecutivewrong++;
 				}
 			}
 
@@ -343,6 +354,7 @@ void game_update(void)
 				numofcorrect = 0;
 				memset(userinput, 0, MAXC * sizeof(char));
 				nextchar = 0;
+				numofconsecutivewrong++;
 			}
 		}
 
@@ -369,6 +381,8 @@ void game_update(void)
 					nextchar = 0;
 					enemyx3 = 28;
 					enemyy3 = 15;
+					numofconsecutivecorrect++;
+					numofconsecutivewrong = 0;
 					x3 = RandomWord();
 				}
 				if (numofcorrect != n3)
@@ -376,6 +390,7 @@ void game_update(void)
 					numofcorrect = 0;
 					memset(userinput, 0, MAXC * sizeof(char));
 					nextchar = 0;
+					numofconsecutivewrong++;
 				}
 			}
 
@@ -384,9 +399,38 @@ void game_update(void)
 				numofcorrect = 0;
 				memset(userinput, 0, MAXC * sizeof(char));
 				nextchar = 0;
+				numofconsecutivewrong++;
 			}
 		}	
 	}
+
+	if (numofconsecutivewrong > 0)
+	{
+		numofconsecutivecorrect = 0;
+	}
+
+	if (velx == -0.05f)
+	{
+		if (numofconsecutivewrong >= 3)
+		{
+			velx = -0.10f;
+			numofconsecutivewrong = 0;
+		}
+	}
+
+	if (velx == -0.10f)
+	{
+		if (numofconsecutivecorrect >= 2)
+		{
+			velx = -0.05f;
+			numofconsecutivecorrect = 0;
+		}
+	}
+	/*_itoa_s(numofconsecutivecorrect, wordbuf, word, 10);
+	CP_Font_DrawText(wordbuf, (float)5 * gridwidth, (float)2 * gridheight);
+	_itoa_s(numofconsecutivewrong, wordbuf, word, 10);
+	CP_Font_DrawText(wordbuf, (float)6 * gridwidth, (float)2 * gridheight);*/
+
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
 	{
 		CP_Engine_Terminate();
@@ -669,11 +713,11 @@ int GetFinalScore(void)
 	return finalscore;
 }
 
-void DisplayNumberOfEnemiesKilled(int numberkilled, float width, float height)
+void DisplayNumberOfEnemiesLeftToKill(int numberkilled, float width, float height)
 {
 	_itoa_s(numkilled, killedbuffer, KILLS, 10);
 	CP_Font_DrawText(killedbuffer, (float)26 * width, (float)1 * height);
-	CP_Font_DrawText("Enemies Killed:", (float)21 * width, (float)1 * height);
+	CP_Font_DrawText("Enemies To Kill:", (float)21 * width, (float)1 * height);
 
 }
 

@@ -17,4 +17,4 @@ float GetFinalTime(void);
 void DisplayScore(int currentscore, float width, float height);
 int GetFinalScore(void);
 void DisplayLives(int livesleft, float width, float height);
-void DisplayNumberOfEnemiesKilled(int numberkilled, float width, float height);
+void DisplayNumberOfEnemiesLeftToKill(int numberkilled, float width, float height);
