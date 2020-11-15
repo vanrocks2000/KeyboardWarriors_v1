@@ -87,7 +87,7 @@ void game_init(void)
 
 	//settings for font, colour
 	CP_Settings_TextSize(FONT_SIZE);
-	fontColour = CP_Color_Create(13, 50, 213, 255);
+	fontColour = CP_Color_Create(0, 0, 0, 255);
 	CP_Settings_Fill(fontColour);
 	
 	//set random word
@@ -111,6 +111,8 @@ void game_init(void)
 	numofconsecutivewrong = 0;
 	memset(userinput, 0, MAXC * sizeof(char));
 	nextchar = 0;
+	score = 0;
+	time = 0;
 
 	
 
@@ -127,7 +129,7 @@ void game_update(void)
 
 
 	//set background
-	CP_Image levelbg = CP_Image_Load("./Assets/levelbg.png");
+	CP_Image levelbg = CP_Image_Load("./Assets/Level1.png");
 	CP_Image_Draw(levelbg, (float)displaywidth / 2, (float)displayheight / 2, (float)CP_Image_GetWidth(levelbg), (float)CP_Image_GetHeight(levelbg) , 255);
 
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
