@@ -24,6 +24,9 @@
     <ClCompile Include="gameover.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gamelvl2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mainmenu.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gameover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gamelvl2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

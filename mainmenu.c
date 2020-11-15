@@ -5,8 +5,12 @@
 
 #define FONT_SIZE 100
 
+
+
 void mainmenu_init(void)
 {
+
+
 	int displayWidth = 1280;
 	int displayHeight = 720;
 
@@ -25,6 +29,7 @@ void mainmenu_init(void)
 	}
 	else
 	{
+
 		struct Button a1 , a2;
 
 		CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 2, (float)displayWidth, (float)displayHeight, 125);
@@ -122,6 +127,7 @@ void mainmenu_init(void)
 
 void mainmenu_update(void)
 {
+
 	mainmenu_init();
 }
 
