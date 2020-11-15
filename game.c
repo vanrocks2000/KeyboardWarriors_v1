@@ -113,9 +113,6 @@ void game_init(void)
 	nextchar = 0;
 	score = 0;
 	time = 0;
-
-	
-
 }
 // initialize variables and CProcessing settings for this gamestate
 

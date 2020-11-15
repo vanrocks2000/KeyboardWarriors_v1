@@ -37,6 +37,10 @@ void gameover_init(void)
 	b3.x = 420;
 	b3.y = 450;
 
+	//set background
+	CP_Image levelbg = CP_Image_Load("./Assets/Bg2.png");
+	CP_Image_Draw(levelbg, 1280 / 2, 720 / 2, (float)CP_Image_GetWidth(levelbg), (float)CP_Image_GetHeight(levelbg), 255);
+
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 
 	CP_Color rectColour = CP_Color_Create(215, 196, 130, 255);
