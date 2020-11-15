@@ -6,6 +6,8 @@
 #include <string.h>
 #include "character.h"
 #include "gameover.h"
+#include "transitiontolvl2.h"
+
 #define FONT_SIZE 30.0f 
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10

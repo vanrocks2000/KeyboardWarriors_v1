@@ -6,6 +6,8 @@
 #include "character.h"
 #include "gameover.h"
 #include "gamelvl2.h"
+#include "transitiontolvl2.h"
+
 #define FONT_SIZE 30.0f 
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
@@ -184,7 +186,7 @@ void game_update(void)
 		memset(string1, 0, 20 * sizeof(char));
 		memset(string2, 0, 20 * sizeof(char));
 		memset(string3, 0, 20 * sizeof(char));
-		CP_Engine_SetNextGameState(game2_init, game2_update, game2_exit);
+		CP_Engine_SetNextGameState(transitiontolvl2_init, transitiontolvl2_update, transitiontolvl2_exit);
 	}
 
 	//minus life if enemy reaches playerline
