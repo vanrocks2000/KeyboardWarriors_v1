@@ -101,8 +101,8 @@ void game_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.05f;
-	lives = 5;
-	numkilled = 5;
+	lives =5;
+	numkilled = 10;
 	memset(userinput, 0, MAXC * sizeof(char));
 	nextchar = 0;
 
@@ -177,6 +177,9 @@ void game_update(void)
 	
 	if (numkilled == 0)
 	{
+		memset(string1, 0, 20 * sizeof(char));
+		memset(string2, 0, 20 * sizeof(char));
+		memset(string3, 0, 20 * sizeof(char));
 		CP_Engine_SetNextGameState(game2_init, game2_update, game2_exit);
 	}
 

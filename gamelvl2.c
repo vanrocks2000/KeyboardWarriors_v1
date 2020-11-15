@@ -99,9 +99,8 @@ void game2_init(void)
 	enemyy3 = 15;
 	playerx = 2;
 	playery = 10;
-	velx = -0.1f;
-	lives = 5;
-	numkilled = 10;
+	velx = -0.15f;
+	numkilled = 20;
 	memset(userinput2, 0, MAXC * sizeof(char));
 	nextchar2 = 0;
 
@@ -404,22 +403,22 @@ int RandomWord2(void)
 
 char* wordlist2(int choice)
 {
-	p[0].buffer = "AAA";
-	p[1].buffer = "BBB";
-	p[2].buffer = "CCC";
-	p[3].buffer = "DDD";
-	p[4].buffer = "EEE";
-	p[5].buffer = "FFF";
-	p[6].buffer = "GGG";
-	p[7].buffer = "HHH";
-	p[8].buffer = "III";
-	p[9].buffer = "JJJ";
-	p[10].buffer = "KKK";
-	p[11].buffer = "LLL";
-	p[12].buffer = "MMM";
-	p[13].buffer = "NNN";
-	p[14].buffer = "OOO";
-	p[15].buffer = "PPP";
+	p[0].buffer = "A";
+	p[1].buffer = "B";
+	p[2].buffer = "C";
+	p[3].buffer = "D";
+	p[4].buffer = "E";
+	p[5].buffer = "F";
+	p[6].buffer = "G";
+	p[7].buffer = "H";
+	p[8].buffer = "I";
+	p[9].buffer = "J";
+	p[10].buffer = "K";
+	p[11].buffer = "L";
+	p[12].buffer = "M";
+	p[13].buffer = "N";
+	p[14].buffer = "O";
+	p[15].buffer = "P";
 
 	char* wordpicked = p[choice].buffer;
 
