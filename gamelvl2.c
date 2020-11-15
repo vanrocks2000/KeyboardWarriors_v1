@@ -8,7 +8,7 @@
 #include "gameover.h"
 #include "transitiontolvl2.h"
 
-#define FONT_SIZE 30.0f 
+#define FONT_SIZE 33.0f 
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 #define TIME 10
@@ -62,7 +62,7 @@ char* pstr3;
 int numofchar;
 int intvalue1[MAXC], intvalue2[MAXC], intvalue3[MAXC];
 float playerx, playery;
-
+CP_Color black, white;
 struct WORDS
 {
 	char* buffer;
@@ -84,8 +84,8 @@ void game2_init(void)
 
 	//settings for font, colour
 	CP_Settings_TextSize(FONT_SIZE);
-	fontColour = CP_Color_Create(0, 0, 0, 255);
-	CP_Settings_Fill(fontColour);
+	black = CP_Color_Create(0, 0, 0, 255);
+	white = CP_Color_Create(255, 255, 255, 255);
 
 	//set random word
 	y1 = RandomWord2();
@@ -126,12 +126,12 @@ void game2_update(void)
 
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 
-
+	CP_Settings_Fill(white);
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
 	DisplayLives(lives, gridwidth, gridheight);
 	DisplayNumberOfEnemiesLeftToKill(numkilled, gridwidth, gridheight);
-
+	CP_Settings_Fill(black);
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 
 	//use randomized value to obtain a word from the wordlist and store it in strings
@@ -171,7 +171,7 @@ void game2_update(void)
 
 	Keyinput2();
 	//displays words typed on screen
-	CP_Font_DrawText(ui2, 500, 100);
+	CP_Font_DrawText(ui2, 550, 120);
 
 	PlayerMovement();
 

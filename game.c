@@ -8,7 +8,7 @@
 #include "gamelvl2.h"
 #include "transitiontolvl2.h"
 
-#define FONT_SIZE 30.0f 
+#define FONT_SIZE 33.0f 
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 #define TIME 10
@@ -37,7 +37,7 @@ int numofconsecutivewrong;
 int numofconsecutivecorrect;
 
 
-CP_Color fontColour;
+CP_Color black, white;
 
 int y, i;
 
@@ -87,8 +87,9 @@ void game_init(void)
 
 	//settings for font, colour
 	CP_Settings_TextSize(FONT_SIZE);
-	fontColour = CP_Color_Create(0, 0, 0, 255);
-	CP_Settings_Fill(fontColour);
+	black = CP_Color_Create(0, 0, 0, 255);
+	white = CP_Color_Create(255, 255, 255, 255);
+	
 	
 	//set random word
 	x1 = RandomWord();
@@ -131,12 +132,12 @@ void game_update(void)
 
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 
-	
+	CP_Settings_Fill(white);
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
 	DisplayLives(lives, gridwidth, gridheight);
 	DisplayNumberOfEnemiesLeftToKill(numkilled, gridwidth, gridheight);
-	
+	CP_Settings_Fill(black);
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 	
 	//use randomized value to obtain a word from the wordlist and store it in strings
@@ -176,7 +177,7 @@ void game_update(void)
 	
 	Keyinput();
 	//displays words typed on screen
-	CP_Font_DrawText(ui, 500, 100);
+	CP_Font_DrawText(ui, 550, 120);
 
 	PlayerMovement();
 	

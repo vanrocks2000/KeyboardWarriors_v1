@@ -28,8 +28,6 @@ void transitiontolvl2_init(void)
 void transitiontolvl2_update(void)
 {
 	
-	CP_Image levelbg = CP_Image_Load("./Assets/levelbg.png");
-	CP_Image_Draw(levelbg, (float)displaywidth / 2, (float)displayheight / 2, (float)CP_Image_GetWidth(levelbg), (float)CP_Image_GetHeight(levelbg), 255);
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 	
 	fontColour1 = CP_Color_Create(13, 50, 213, 255);
