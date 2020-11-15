@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "game.h"
 #include "mainmenu.h"
+#include "howtoplay.h"
 
 #define FONT_SIZE 100
 
@@ -97,6 +98,13 @@ void mainmenu_init(void)
 
 			}
 		}
+		//Add code for How to play button
+		if (CP_Input_KeyTriggered(KEY_SPACE))
+		{
+			CP_Engine_SetNextGameState(howtoplay_init, howtoplay_update, howtoplay_exit);
+		}
+
+
 		if (mouseX > a2.x -150 && mouseX < (a2.x + a2.width))
 		{
 			if (mouseY > a2.y - 75 && mouseY < (a2.y + a2.height))
