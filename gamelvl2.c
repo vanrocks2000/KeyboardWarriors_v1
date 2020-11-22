@@ -44,6 +44,7 @@ int n1, n2, n3;
 
 int nextchar2 = 0;
 int numofcorrect2 = 0;
+int current_frame2 = 0;
 int x, y1, y2, y3;
 char* wordchosen;
 char* wordchosen2;
@@ -160,9 +161,70 @@ void game2_update(void)
 	pstr2 = string2;
 	pstr3 = string3;
 
-	Drawenemy(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
-	Drawenemy(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
-	Drawenemy(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+	if (current_frame2 == 0)
+	{
+		Draw2enemy(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw2enemy(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw2enemy(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame2++;
+	}
+
+	else if (current_frame2 == 1)
+	{
+		Draw2enemy1(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw2enemy1(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw2enemy1(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame2++;
+	}
+
+	else if (current_frame2 == 2)
+	{
+		Draw2enemy2(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw2enemy2(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw2enemy2(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame2++;
+	}
+
+	else if (current_frame2 == 3)
+	{
+		Draw2enemy3(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw2enemy3(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw2enemy3(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame2++;
+	}
+
+	else if (current_frame2 == 4)
+	{
+		Draw2enemy4(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw2enemy4(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw2enemy4(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame2++;
+	}
+
+	else if (current_frame2 == 5)
+	{
+		Draw2enemy5(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw2enemy5(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw2enemy5(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame2++;
+	}
+
+	else if (current_frame2 == 6)
+	{
+		Draw2enemy6(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw2enemy6(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw2enemy6(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame2++;
+	}
+
+	else if (current_frame2 == 7)
+	{
+		Draw2enemy7(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw2enemy7(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw2enemy7(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame2 = 0;
+	}
+
 	enemyx1 += velx;
 	enemyx2 += velx;
 	enemyx3 += velx;
