@@ -255,6 +255,7 @@ void game_update(void)
 	if ((int)enemyx1 == (int)playerx)
 	{
 		lives -= 1;
+		numofconsecutivewrong++;
 		if (lives == 0)
 		{
 			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
@@ -280,6 +281,7 @@ void game_update(void)
 	if ((int)enemyx2 == (int)playerx)
 	{
 		lives -= 1;
+		numofconsecutivewrong++;
 		if (lives == 0)
 		{
 			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
@@ -305,6 +307,7 @@ void game_update(void)
 	if ((int)enemyx3 == (int)playerx)
 	{
 		lives -= 1;
+		numofconsecutivewrong++;
 		if (lives == 0)
 		{
 			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
@@ -449,7 +452,7 @@ void game_update(void)
 					numofconsecutivewrong = 0;
 					x3 = RandomWord();
 				}
-				if (numofcorrect != n3)
+				 else if (numofcorrect != n3)
 				{
 					numofcorrect = 0;
 					memset(userinput, 0, MAXC * sizeof(char));
