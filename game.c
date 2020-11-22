@@ -105,9 +105,9 @@ void game_init(void)
 	enemyy3 = 15;
 	playerx = 2;
 	playery = 10;
-	velx = -0.05f;
+	velx = -0.07f;
 	lives = 5;
-	numkilled = 10;
+	numkilled = 20;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
 	memset(userinput, 0, MAXC * sizeof(char));
@@ -540,6 +540,16 @@ void PlayerMovement(void)
 void Keyinput(void)
 {
 	//whatever that is typed first is stored in 0 position in array, subsequent char is stored in nth position +1
+	if (*(ui) != '\0')
+	{
+		if (CP_Input_KeyTriggered(KEY_BACKSPACE))
+		{
+			nextchar--;
+			*(ui + nextchar) = '\0';
+
+		}
+	}
+
 	if (CP_Input_KeyTriggered(KEY_SPACE))
 	{
 		*(ui + nextchar) = ' ';

@@ -1,12 +1,11 @@
 #include "cprocessing.h"
 #include <stdio.h>
 #include "game.h"
-#include "gamelvl2.h"
+#include "gamelvl3.h"
 #include <stdlib.h>
 #include <string.h>
 #include "character.h"
 #include "gameover.h"
-#include "transitiontolvl2.h"
 #include "transitiontolvl3.h"
 
 #define FONT_SIZE 33.0f 
@@ -39,12 +38,12 @@ CP_Color fontColour;
 
 int y, i;
 
-char userinput2[MAXC];
-char* ui2 = userinput2;
+char userinput3[MAXC];
+char* ui3 = userinput3;
 int n1, n2, n3;
 
-int nextchar2 = 0;
-int numofcorrect2 = 0;
+int nextchar3 = 0;
+int numofcorrect3 = 0;
 int x, y1, y2, y3;
 char* wordchosen;
 char* wordchosen2;
@@ -73,7 +72,7 @@ struct WORDS
 } p[MAXW];
 
 
-void game2_init(void)
+void game3_init(void)
 {
 	// set game window size
 	displaywidth = 1280;
@@ -89,9 +88,9 @@ void game2_init(void)
 	white = CP_Color_Create(255, 255, 255, 255);
 
 	//set random word
-	y1 = RandomWord2();
-	y2 = RandomWord2();
-	y3 = RandomWord2();
+	y1 = RandomWord3();
+	y2 = RandomWord3();
+	y3 = RandomWord3();
 
 	//set coordinates of enemy/player
 	enemyx1 = 28;
@@ -102,17 +101,18 @@ void game2_init(void)
 	enemyy3 = 15;
 	playerx = 2;
 	playery = 10;
-	velx = -0.12f;
-	numkilled = 30;
-	memset(userinput2, 0, MAXC * sizeof(char));
-	nextchar2 = 0;
+	velx = -0.03f;
+	numkilled = 20;
+	lives = 5;
+	memset(userinput3, 0, MAXC * sizeof(char));
+	nextchar3 = 0;
 
 
 
 }
 // initialize variables and CProcessing settings for this gamestate
 
-void game2_update(void)
+void game3_update(void)
 {
 
 	//set time
@@ -136,13 +136,13 @@ void game2_update(void)
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 
 	//use randomized value to obtain a word from the wordlist and store it in strings
-	wordchosen = wordlist2(y1);
-	wordchosen2 = wordlist2(y2);
-	wordchosen3 = wordlist2(y3);
+	wordchosen = wordlist3(y1);
+	wordchosen2 = wordlist3(y2);
+	wordchosen3 = wordlist3(y3);
 
-	n1 = numofcharacters2(y1);
-	n2 = numofcharacters2(y2);
-	n3 = numofcharacters2(y3);
+	n1 = numofcharacters3(y1);
+	n2 = numofcharacters3(y2);
+	n3 = numofcharacters3(y3);
 
 	for (int test = 0; test < n1; test++)
 	{
@@ -168,20 +168,17 @@ void game2_update(void)
 	enemyx2 += velx;
 	enemyx3 += velx;
 
-	ConvertWordToInt2();
+	ConvertWordToInt3();
 
-	Keyinput2();
+	Keyinput3();
 	//displays words typed on screen
-	CP_Font_DrawText(ui2, 550, 120);
+	CP_Font_DrawText(ui3, 550, 120);
 
 	PlayerMovement();
 
 	if (numkilled == 0)
 	{
-		memset(string1, 0, 20 * sizeof(char));
-		memset(string2, 0, 20 * sizeof(char));
-		memset(string3, 0, 20 * sizeof(char));
-		CP_Engine_SetNextGameState(transitiontolvl3_init, transitiontolvl3_update, transitiontolvl3_exit);
+		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
 	}
 
 	//minus life if enemy reaches playerline
@@ -194,18 +191,18 @@ void game2_update(void)
 			time = 0;
 			score = 0;
 			numkilled = 0;
-			memset(userinput2, 0, MAXC * sizeof(char));
+			memset(userinput3, 0, MAXC * sizeof(char));
 			memset(string1, 0, 20 * sizeof(char));
 			memset(string2, 0, 20 * sizeof(char));
 			memset(string3, 0, 20 * sizeof(char));
 		}
 		else
 		{
-			numofcorrect2 = 0;
+			numofcorrect3 = 0;
 			memset(string1, 0, 20 * sizeof(char));
 			enemyx1 = 28;
 			enemyy1 = 5;
-			y1 = RandomWord2();
+			y1 = RandomWord3();
 
 		}
 	}
@@ -219,18 +216,18 @@ void game2_update(void)
 			time = 0;
 			score = 0;
 			numkilled = 0;
-			memset(userinput2, 0, MAXC * sizeof(char));
+			memset(userinput3, 0, MAXC * sizeof(char));
 			memset(string1, 0, 20 * sizeof(char));
 			memset(string2, 0, 20 * sizeof(char));
 			memset(string3, 0, 20 * sizeof(char));
 		}
 		else
 		{
-			numofcorrect2 = 0;
+			numofcorrect3 = 0;
 			memset(string2, 0, 20 * sizeof(char));
 			enemyx2 = 28;
 			enemyy2 = 10;
-			y2 = RandomWord2();
+			y2 = RandomWord3();
 
 
 		}
@@ -244,18 +241,18 @@ void game2_update(void)
 			time = 0;
 			score = 0;
 			numkilled = 0;
-			memset(userinput2, 0, MAXC * sizeof(char));
+			memset(userinput3, 0, MAXC * sizeof(char));
 			memset(string1, 0, 20 * sizeof(char));
 			memset(string2, 0, 20 * sizeof(char));
 			memset(string3, 0, 20 * sizeof(char));
 		}
 		else
 		{
-			numofcorrect2 = 0;
+			numofcorrect3 = 0;
 			memset(string3, 0, 20 * sizeof(char));
 			enemyx3 = 28;
 			enemyy3 = 15;
-			y3 = RandomWord2();
+			y3 = RandomWord3();
 
 		}
 	}
@@ -264,45 +261,45 @@ void game2_update(void)
 	if (CP_Input_KeyTriggered(KEY_ENTER))
 	{
 		//check if they are the same
-		int lenofinput = numofcharactersinput2();
+		int lenofinput = numofcharactersinput3();
 
 		if (playery == 5)
 		{
 			for (int check = 0; check < lenofinput; check++)
 			{
-				if (intvalue1[check] == (int)userinput2[check])
+				if (intvalue1[check] == (int)userinput3[check])
 				{
-					numofcorrect2++;
+					numofcorrect3++;
 				}
 
 			}
 			if (n1 == lenofinput)
 			{
-				if (numofcorrect2 == n1)
+				if (numofcorrect3 == n1)
 				{
-					numofcorrect2 = 0;
+					numofcorrect3 = 0;
 					score++;
 					numkilled--;
-					memset(userinput2, 0, MAXC * sizeof(char));
+					memset(userinput3, 0, MAXC * sizeof(char));
 					memset(string1, 0, MAXC * sizeof(char));
-					nextchar2 = 0;
+					nextchar3 = 0;
 					enemyx1 = 28;
 					enemyy1 = 5;
-					y1 = RandomWord2();
+					y1 = RandomWord3();
 				}
-				else if (numofcorrect2 != n1)
+				else if (numofcorrect3 != n1)
 				{
-					numofcorrect2 = 0;
-					memset(userinput2, 0, MAXC * sizeof(char));
-					nextchar2 = 0;
+					numofcorrect3 = 0;
+					memset(userinput3, 0, MAXC * sizeof(char));
+					nextchar3 = 0;
 				}
 			}
 
 			else
 			{
-				numofcorrect2 = 0;
-				memset(userinput2, 0, MAXC * sizeof(char));
-				nextchar2 = 0;
+				numofcorrect3 = 0;
+				memset(userinput3, 0, MAXC * sizeof(char));
+				nextchar3 = 0;
 			}
 		}
 
@@ -311,39 +308,39 @@ void game2_update(void)
 
 			for (int check = 0; check < lenofinput; check++)
 			{
-				if (intvalue2[check] == (int)userinput2[check])
+				if (intvalue2[check] == (int)userinput3[check])
 				{
-					numofcorrect2++;
+					numofcorrect3++;
 				}
 
 			}
 			if (n2 == lenofinput)
 			{
-				if (numofcorrect2 == n2)
+				if (numofcorrect3 == n2)
 				{
-					numofcorrect2 = 0;
+					numofcorrect3 = 0;
 					score++;
 					numkilled--;
-					memset(userinput2, 0, MAXC * sizeof(char));
+					memset(userinput3, 0, MAXC * sizeof(char));
 					memset(string2, 0, MAXC * sizeof(char));
-					nextchar2 = 0;
+					nextchar3 = 0;
 					enemyx2 = 28;
 					enemyy2 = 10;
-					y2 = RandomWord2();
+					y2 = RandomWord3();
 				}
-				else if (numofcorrect2 != n2)
+				else if (numofcorrect3 != n2)
 				{
-					numofcorrect2 = 0;
-					memset(userinput2, 0, MAXC * sizeof(char));
-					nextchar2 = 0;
+					numofcorrect3 = 0;
+					memset(userinput3, 0, MAXC * sizeof(char));
+					nextchar3 = 0;
 				}
 			}
 
 			else
 			{
-				numofcorrect2 = 0;
-				memset(userinput2, 0, MAXC * sizeof(char));
-				nextchar2 = 0;
+				numofcorrect3 = 0;
+				memset(userinput3, 0, MAXC * sizeof(char));
+				nextchar3 = 0;
 			}
 		}
 
@@ -352,39 +349,39 @@ void game2_update(void)
 
 			for (int check = 0; check < lenofinput; check++)
 			{
-				if (intvalue3[check] == (int)userinput2[check])
+				if (intvalue3[check] == (int)userinput3[check])
 				{
-					numofcorrect2++;
+					numofcorrect3++;
 				}
 
 			}
 			if (n3 == lenofinput)
 			{
-				if (numofcorrect2 == n3)
+				if (numofcorrect3 == n3)
 				{
-					numofcorrect2 = 0;
+					numofcorrect3 = 0;
 					score++;
 					numkilled--;
-					memset(userinput2, 0, MAXC * sizeof(char));
+					memset(userinput3, 0, MAXC * sizeof(char));
 					memset(string3, 0, MAXC * sizeof(char));
-					nextchar2 = 0;
+					nextchar3 = 0;
 					enemyx3 = 28;
 					enemyy3 = 15;
-					y3 = RandomWord2();
+					y3 = RandomWord3();
 				}
-				else if (numofcorrect2 != n3)
+				else if (numofcorrect3 != n3)
 				{
-					numofcorrect2 = 0;
-					memset(userinput2, 0, MAXC * sizeof(char));
-					nextchar2 = 0;
+					numofcorrect3 = 0;
+					memset(userinput3, 0, MAXC * sizeof(char));
+					nextchar3 = 0;
 				}
 			}
 
 			else
 			{
-				numofcorrect2 = 0;
-				memset(userinput2, 0, MAXC * sizeof(char));
-				nextchar2 = 0;
+				numofcorrect3 = 0;
+				memset(userinput3, 0, MAXC * sizeof(char));
+				nextchar3 = 0;
 			}
 		}
 	}
@@ -396,53 +393,40 @@ void game2_update(void)
 }
 
 
-void game2_exit(void)
+void game3_exit(void)
 {
 	// shut down the gamestate and cleanup any dynamic memory
 }
 
-int RandomWord2(void)
+int RandomWord3(void)
 {
-	x = CP_Random_RangeInt(0, 25);
+	x = CP_Random_RangeInt(0, 13);
 	return x;
 }
 
-char* wordlist2(int choice)
+char* wordlist3(int choice)
 {
-	p[0].buffer = "A";
-	p[1].buffer = "B";
-	p[2].buffer = "C";
-	p[3].buffer = "D";
-	p[4].buffer = "E";
-	p[5].buffer = "F";
-	p[6].buffer = "G";
-	p[7].buffer = "H";
-	p[8].buffer = "I";
-	p[9].buffer = "J";
-	p[10].buffer = "K";
-	p[11].buffer = "L";
-	p[12].buffer = "M";
-	p[13].buffer = "N";
-	p[14].buffer = "O";
-	p[15].buffer = "P";
-	p[16].buffer = "Q";
-	p[17].buffer = "R";
-	p[18].buffer = "S";
-	p[19].buffer = "T";
-	p[20].buffer = "U";
-	p[21].buffer = "V";
-	p[22].buffer = "W";
-	p[23].buffer = "X";
-	p[24].buffer = "Y";
-	p[25].buffer = "Z";
-
+	p[0].buffer = "#PH1$HING";
+	p[1].buffer = "M@LW@R3!";
+	p[2].buffer = "*$!@*&*";
+	p[3].buffer = "($P00F1NG)";
+	p[4].buffer = "EN(RYP710N";
+	p[5].buffer = "@DWAR3";
+	p[6].buffer = "A77ACK!1!!";
+	p[7].buffer = "F1R3W@LL";
+	p[8].buffer = "******";
+	p[9].buffer = "#WHIT3HAT";
+	p[10].buffer = "S P @ M";
+	p[11].buffer = "CACHE^";
+	p[12].buffer = "H@CK3RRR";
+	p[13].buffer = "*AN0NYM0US*";
 
 	char* wordpicked = p[choice].buffer;
 
 	return wordpicked;
 }
 
-int numofcharacters2(int l)
+int numofcharacters3(int l)
 {
 	p[l].numc = (int)strlen(p[l].buffer);
 	int nc = p[l].numc;
@@ -450,16 +434,16 @@ int numofcharacters2(int l)
 
 
 }
-int numofcharactersinput2(void)
+int numofcharactersinput3(void)
 {
-	int lengthofinput = (int)strlen(userinput2);
+	int lengthofinput = (int)strlen(userinput3);
 
 	return lengthofinput;
 
 
 }
 
-void ConvertWordToInt2(void)
+void ConvertWordToInt3(void)
 {
 	for (i = 0; i < n1; i++)
 	{
@@ -484,7 +468,7 @@ void ConvertWordToInt2(void)
 
 }
 
-void PlayerMovement2(void)
+void PlayerMovement3(void)
 {
 	if (playery >= 10 && playery <= 15)
 	{
@@ -501,157 +485,261 @@ void PlayerMovement2(void)
 		}
 	}
 }
-void Keyinput2(void)
+void Keyinput3(void)
 {
 
 	//whatever that is typed first is stored in 0 position in array, subsequent char is stored in nth position +1
-	if (*(ui2) != '\0')
+	if (*(ui3) != '\0')
 	{
 		if (CP_Input_KeyTriggered(KEY_BACKSPACE))
 		{
-			nextchar2--;
-			*(ui2 + nextchar2) = '\0';
+			nextchar3--;
+			*(ui3 + nextchar3) = '\0';
 
 		}
 	}
 
 	if (CP_Input_KeyTriggered(KEY_SPACE))
 	{
-		*(ui2 + nextchar2) = ' ';
-		nextchar2++;
+		*(ui3 + nextchar3) = ' ';
+		nextchar3++;
 	}
 
 	if (CP_Input_KeyTriggered(KEY_A))
 	{
-		*(ui2 + nextchar2) = 'A';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'A';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_B))
 	{
-		*(ui2 + nextchar2) = 'B';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'B';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_C))
 	{
-		*(ui2 + nextchar2) = 'C';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'C';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_D))
 	{
-		*(ui2 + nextchar2) = 'D';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'D';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_E))
 	{
-		*(ui2 + nextchar2) = 'E';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'E';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_F))
 	{
-		*(ui2 + nextchar2) = 'F';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'F';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_G))
 	{
-		*(ui2 + nextchar2) = 'G';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'G';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_H))
 	{
-		*(ui2 + nextchar2) = 'H';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'H';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_I))
 	{
-		*(ui2 + nextchar2) = 'I';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'I';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_J))
 	{
-		*(ui2 + nextchar2) = 'J';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'J';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_K))
 	{
-		*(ui2 + nextchar2) = 'K';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'K';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_L))
 	{
-		*(ui2 + nextchar2) = 'L';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'L';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_M))
 	{
-		*(ui2 + nextchar2) = 'M';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'M';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_N))
 	{
-		*(ui2 + nextchar2) = 'N';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'N';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_O))
 	{
-		*(ui2 + nextchar2) = 'O';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'O';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_P))
 	{
-		*(ui2 + nextchar2) = 'P';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'P';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_Q))
 	{
-		*(ui2 + nextchar2) = 'Q';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'Q';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_R))
 	{
-		*(ui2 + nextchar2) = 'R';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'R';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_S))
 	{
-		*(ui2 + nextchar2) = 'S';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'S';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_T))
 	{
-		*(ui2 + nextchar2) = 'T';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'T';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_U))
 	{
-		*(ui2 + nextchar2) = 'U';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'U';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_V))
 	{
-		*(ui2 + nextchar2) = 'V';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'V';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_W))
 	{
-		*(ui2 + nextchar2) = 'W';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'W';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_X))
 	{
-		*(ui2 + nextchar2) = 'X';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'X';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_Y))
 	{
-		*(ui2 + nextchar2) = 'Y';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'Y';
+		nextchar3++;
 	}
 	if (CP_Input_KeyTriggered(KEY_Z))
 	{
-		*(ui2 + nextchar2) = 'Z';
-		nextchar2++;
+		*(ui3 + nextchar3) = 'Z';
+		nextchar3++;
 	}
 
-
-
+	if (CP_Input_KeyDown(KEY_LEFT_SHIFT) || CP_Input_KeyDown(KEY_RIGHT_SHIFT))
+	{
+		if (CP_Input_KeyTriggered(KEY_1))
+		{
+			*(ui3 + nextchar3) = '!';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_2))
+		{
+			*(ui3 + nextchar3) = '@';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_3))
+		{
+			*(ui3 + nextchar3) = '#';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_4))
+		{
+			*(ui3 + nextchar3) = '$';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_5))
+		{
+			*(ui3 + nextchar3) = '%';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_6))
+		{
+			*(ui3 + nextchar3) = '^';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_7))
+		{
+			*(ui3 + nextchar3) = '&';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_8))
+		{
+			*(ui3 + nextchar3) = '*';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_9))
+		{
+			*(ui3 + nextchar3) = '(';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_0))
+		{
+			*(ui3 + nextchar3) = ')';
+			nextchar3++;
+		}
+	}
+	else
+	{
+		if (CP_Input_KeyTriggered(KEY_1))
+		{
+			*(ui3 + nextchar3) = '1';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_2))
+		{
+			*(ui3 + nextchar3) = '2';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_3))
+		{
+			*(ui3 + nextchar3) = '3';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_4))
+		{
+			*(ui3 + nextchar3) = '4';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_5))
+		{
+			*(ui3 + nextchar3) = '5';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_6))
+		{
+			*(ui3 + nextchar3) = '6';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_7))
+		{
+			*(ui3 + nextchar3) = '7';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_8))
+		{
+			*(ui3 + nextchar3) = '8';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_9))
+		{
+			*(ui3 + nextchar3) = '9';
+			nextchar3++;
+		}
+		if (CP_Input_KeyTriggered(KEY_0))
+		{
+			*(ui3 + nextchar3) = '0';
+			nextchar3++;
+		}
+	}
 }
