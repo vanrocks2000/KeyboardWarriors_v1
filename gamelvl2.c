@@ -7,6 +7,7 @@
 #include "character.h"
 #include "gameover.h"
 #include "transitiontolvl2.h"
+#include "bosslvl.h"
 
 #define FONT_SIZE 33.0f 
 #define NUMBER_STRINGS 5
@@ -103,7 +104,7 @@ void game2_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.15f;
-	numkilled = 20;
+	numkilled = 1;
 	memset(userinput2, 0, MAXC * sizeof(char));
 	nextchar2 = 0;
 
@@ -239,7 +240,7 @@ void game2_update(void)
 
 	if (numkilled == 0)
 	{
-		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+		CP_Engine_SetNextGameState(game4_init, game4_update, game4_exit);
 	}
 
 	//minus life if enemy reaches playerline

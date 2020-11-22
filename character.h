@@ -16,3 +16,4 @@ void Draw2enemy5(char* ptr, float eposx, float eposy, float width, float height)
 void Draw2enemy6(char* ptr, float eposx, float eposy, float width, float height);
 void Draw2enemy7(char* ptr, float eposx, float eposy, float width, float height);
 void Drawplayer(float pposx, float pposy, float width, float height);
+void Drawboss(char* ptr, float eposx, float eposy, float width, float height);

@@ -108,7 +108,7 @@ void game_init(void)
 	playery = 10;
 	velx = -0.05f;
 	lives = 5;
-	numkilled = 10;
+	numkilled = 1;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
 	memset(userinput, 0, MAXC * sizeof(char));
