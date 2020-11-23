@@ -3,7 +3,7 @@
 #include "game.h"
 #include "mainmenu.h"
 #include "howtoplay.h"
-
+#include "gamelvl3.h"
 #define FONT_SIZE 100
 
 
@@ -107,7 +107,10 @@ void mainmenu_init(void)
 			}
 		}
 		//Add code for How to play button
-		//if (CP_Input_KeyTriggered(KEY_SPACE))
+		if (CP_Input_KeyTriggered(KEY_SPACE))
+		{
+			CP_Engine_SetNextGameState(game3_init, game3_update, game3_exit);
+		}
 		if (mouseX > a1.x - 150 && mouseX < (a1.x + a1.width))
 		{
 			if (mouseY > a2.y - 50 && mouseY < (a2.y - 50 + a2.height))
