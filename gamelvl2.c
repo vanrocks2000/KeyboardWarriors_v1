@@ -104,7 +104,7 @@ void game2_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.12f;
-	numkilled = 30;
+	numkilled = 25;
 	memset(userinput2, 0, MAXC * sizeof(char));
 	nextchar2 = 0;
 
