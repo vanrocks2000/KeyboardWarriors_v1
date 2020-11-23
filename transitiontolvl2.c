@@ -8,7 +8,7 @@
 #include "gamelvl2.h"
 #include "transitiontolvl2.h"
 
-#define FONT_SIZE 50.0f 
+#define FONT_SIZE 40.0f 
 CP_Color fontColour1, fontColour2;
 
 
@@ -33,13 +33,13 @@ void transitiontolvl2_update(void)
 	
 	fontColour1 = CP_Color_Create(13, 50, 213, 255);
 	CP_Settings_Fill(fontColour1);
-	CP_Font_DrawText("Congratulations On Clearing Level 1 !", 300, 200);
-	CP_Font_DrawText("Level 2 : Eliminate 25 Enemies", 350, 300);
-	CP_Font_DrawText("Please press spacebar to proceed to level 2 !", 250, 400);
+	CP_Font_DrawText("Congratulations On Clearing Level 1 !", 250, 200);
+	CP_Font_DrawText("Level 2 : Eliminate 25 Enemies", 300, 300);
+	CP_Font_DrawText("Please press spacebar to proceed to level 2 !", 150, 400);
 	
 	fontColour2 = CP_Color_Create(255, 0, 0, 255);
 	CP_Settings_Fill(fontColour2);
-	CP_Font_DrawText("*Warning: Enemies in level 2 will be faster.", 300, 500);
+	CP_Font_DrawText("*Warning: Enemies in level 2 will be faster.", 200, 500);
 	
 	if (CP_Input_KeyTriggered(KEY_SPACE))
 	{

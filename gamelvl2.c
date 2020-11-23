@@ -9,7 +9,7 @@
 #include "transitiontolvl2.h"
 #include "transitiontolvl3.h"
 
-#define FONT_SIZE 33.0f 
+#define FONT_SIZE 25.0f 
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 #define TIME 10
@@ -104,7 +104,7 @@ void game2_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.12f;
-	numkilled = 25;
+	numkilled = 1;
 	memset(userinput2, 0, MAXC * sizeof(char));
 	nextchar2 = 0;
 

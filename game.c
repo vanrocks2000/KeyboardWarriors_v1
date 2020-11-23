@@ -9,6 +9,7 @@
 #include "transitiontolvl2.h"
 
 #define FONT_SIZE 25.0f 
+#define FONT_SIZE2 35.0f
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 #define TIME 10
@@ -87,7 +88,7 @@ void game_init(void)
 	gridheight = 40;
 
 	//settings for font, colour
-	CP_Settings_TextSize(FONT_SIZE);
+	
 	black = CP_Color_Create(0, 0, 0, 255);
 	white = CP_Color_Create(255, 255, 255, 255);
 	
@@ -108,7 +109,7 @@ void game_init(void)
 	playery = 10;
 	velx = -0.07f;
 	lives = 5;
-	numkilled = 15;
+	numkilled = 1;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
 	memset(userinput, 0, MAXC * sizeof(char));
@@ -139,6 +140,7 @@ void game_update(void)
 	DisplayLives(lives, gridwidth, gridheight);
 	DisplayNumberOfEnemiesLeftToKill(numkilled, gridwidth, gridheight);
 	CP_Settings_Fill(black);
+	CP_Settings_TextSize(FONT_SIZE2);
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 	
 	//use randomized value to obtain a word from the wordlist and store it in strings
@@ -758,6 +760,7 @@ void Keyinput(void)
 
 void DisplayTime(float timeelapsed, float width, float height)
 {
+	CP_Settings_TextSize(FONT_SIZE);
 	_itoa_s((int)timeelapsed, timebuffer, TIME, 10);
 	CP_Font_DrawText(timebuffer, (float)4 * width, (float)1 * height);
 	CP_Font_DrawText("Time:", (float)1 * width, (float)1 * height);
@@ -771,6 +774,7 @@ float GetFinalTime(void)
 
 void DisplayLives(int livesleft, float width, float height)
 {
+	CP_Settings_TextSize(FONT_SIZE);
 	_itoa_s(lives, lifebuffer, LIVES, 10);
 	CP_Font_DrawText(lifebuffer, (float)12 * width, (float)1 * height);
 	CP_Font_DrawText("Lives Left:", (float)8 * width, (float)1 * height);
@@ -779,6 +783,7 @@ void DisplayLives(int livesleft, float width, float height)
 
 void DisplayScore(int currentscore, float width, float height)
 {
+	CP_Settings_TextSize(FONT_SIZE);
 	_itoa_s(score, scorebuffer, SCORE, 10);
 	CP_Font_DrawText(scorebuffer, (float)18 * width, (float)1 * height);
 	CP_Font_DrawText("Score:", (float)15 * width, (float)1 * height);
@@ -792,6 +797,7 @@ int GetFinalScore(void)
 
 void DisplayNumberOfEnemiesLeftToKill(int numberkilled, float width, float height)
 {
+	CP_Settings_TextSize(FONT_SIZE);
 	_itoa_s(numkilled, killedbuffer, KILLS, 10);
 	CP_Font_DrawText(killedbuffer, (float)26.5 * width, (float)1 * height);
 	CP_Font_DrawText("Enemies To Kill:", (float)20.5 * width, (float)1 * height);
