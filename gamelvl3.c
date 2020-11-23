@@ -11,6 +11,7 @@
 #include "transitiontolvl4.h"
 
 #define FONT_SIZE 25.0f 
+#define FONT_SIZE2 35.0f
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 #define TIME 10
@@ -135,6 +136,7 @@ void game3_update(void)
 	DisplayLives(lives, gridwidth, gridheight);
 	DisplayNumberOfEnemiesLeftToKill(numkilled, gridwidth, gridheight);
 	CP_Settings_Fill(black);
+	CP_Settings_TextSize(FONT_SIZE2);
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 
 	//use randomized value to obtain a word from the wordlist and store it in strings
