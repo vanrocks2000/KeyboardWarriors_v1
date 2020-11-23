@@ -9,7 +9,7 @@
 #include "transitiontolvl2.h"
 #include "transitiontolvl3.h"
 
-#define FONT_SIZE 33.0f 
+#define FONT_SIZE 25.0f 
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 #define TIME 10
