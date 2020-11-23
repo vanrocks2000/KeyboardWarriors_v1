@@ -103,7 +103,7 @@ void game3_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.03f;
-	numkilled = 20;
+	numkilled = 1;
 	lives = 5;
 	memset(userinput3, 0, MAXC * sizeof(char));
 	nextchar3 = 0;
