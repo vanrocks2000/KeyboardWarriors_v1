@@ -9,7 +9,7 @@
 #include "transitiontolvl2.h"
 #include "bosslvl.h"
 
-#define FONT_SIZE 33.0f 
+#define FONT_SIZE 25.0f 
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 #define TIME 10
@@ -109,7 +109,7 @@ void game_init(void)
 	playery = 10;
 	velx = -0.07f;
 	lives = 5;
-	numkilled = 20;
+	numkilled = 15;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
 	memset(userinput, 0, MAXC * sizeof(char));
@@ -761,8 +761,8 @@ void Keyinput(void)
 void DisplayTime(float timeelapsed, float width, float height)
 {
 	_itoa_s((int)timeelapsed, timebuffer, TIME, 10);
-	CP_Font_DrawText(timebuffer, (float)5 * width, (float)1 * height);
-	CP_Font_DrawText("Time:", (float)2 * width, (float)1 * height);
+	CP_Font_DrawText(timebuffer, (float)4 * width, (float)1 * height);
+	CP_Font_DrawText("Time:", (float)1 * width, (float)1 * height);
 
 }
 
@@ -795,8 +795,8 @@ int GetFinalScore(void)
 void DisplayNumberOfEnemiesLeftToKill(int numberkilled, float width, float height)
 {
 	_itoa_s(numkilled, killedbuffer, KILLS, 10);
-	CP_Font_DrawText(killedbuffer, (float)26 * width, (float)1 * height);
-	CP_Font_DrawText("Enemies To Kill:", (float)21 * width, (float)1 * height);
+	CP_Font_DrawText(killedbuffer, (float)26.5 * width, (float)1 * height);
+	CP_Font_DrawText("Enemies To Kill:", (float)20.5 * width, (float)1 * height);
 
 }
 

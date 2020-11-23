@@ -27,13 +27,14 @@ void transitiontolvl2_init(void)
 
 void transitiontolvl2_update(void)
 {
-	
+	CP_Font font1 = CP_Font_Load("./Assets/retro_computer.ttf");
+	CP_Font_Set(font1);
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 	
 	fontColour1 = CP_Color_Create(13, 50, 213, 255);
 	CP_Settings_Fill(fontColour1);
 	CP_Font_DrawText("Congratulations On Clearing Level 1 !", 300, 200);
-	CP_Font_DrawText("Level 2 : Eliminate 30 Enemies", 350, 300);
+	CP_Font_DrawText("Level 2 : Eliminate 25 Enemies", 350, 300);
 	CP_Font_DrawText("Please press spacebar to proceed to level 2 !", 250, 400);
 	
 	fontColour2 = CP_Color_Create(255, 0, 0, 255);

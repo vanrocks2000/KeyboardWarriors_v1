@@ -4,6 +4,7 @@
 #include "mainmenu.h"
 #include "howtoplay.h"
 #include "gamelvl3.h"
+#include "transitiontolvl1.h"
 #define FONT_SIZE 100
 
 
@@ -101,7 +102,7 @@ void mainmenu_init(void)
 				//if mouseclicked on first button, start the game
 				if (CP_Input_MouseClicked())
 				{
-					CP_Engine_SetNextGameState(game_init, game_update, game_exit);
+					CP_Engine_SetNextGameState(transitiontolvl1_init, transitiontolvl1_update, transitiontolvl1_exit);
 				}
 
 			}

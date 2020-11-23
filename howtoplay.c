@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "mainmenu.h"
 
-#define FONT_SIZE 45
+#define FONT_SIZE 35
 
 int displayWidth = 1280;
 int displayHeight = 720;
@@ -18,7 +18,8 @@ void howtoplay_init(void)
 
 void howtoplay_update(void)
 {
-
+	CP_Font font1 = CP_Font_Load("./Assets/retro_computer.ttf");
+	CP_Font_Set(font1);
 	CP_Image bg = CP_Image_Load("./Assets/bg.png");
 	CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 2, (float)displayWidth, (float)displayHeight, 125);
 
@@ -26,7 +27,7 @@ void howtoplay_update(void)
 	CP_Color back = CP_Color_Create(255, 255, 255, 255);
 	CP_Settings_Fill(back);
 	CP_Graphics_DrawRect(10, 10, 1200, 550);
-	CP_Graphics_DrawRect(425, 600, 450, 55);
+	CP_Graphics_DrawRect(400, 600, 475, 55);
 	char *text = "HOW TO PLAY\n\
 	------------\n\
 	There will be 3 rows of enemies approaching you. \n\
@@ -40,7 +41,7 @@ void howtoplay_update(void)
 	CP_Settings_Fill(front);
 	CP_Font_DrawTextBox(text, 15, 50, 1200);
 
-	CP_Font_DrawText("Press SPACE to go back", 450, 645);
+	CP_Font_DrawText("Press SPACE to go back", 410, 645);
 
 	if (CP_Input_KeyTriggered(KEY_SPACE))
 	{
