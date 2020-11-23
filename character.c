@@ -119,3 +119,10 @@ void Drawplayer(float pposx, float pposy, float width, float height)
 	CP_Image player = CP_Image_Load("./Assets/Player.png");
 	CP_Image_Draw(player, pposx * width, pposy * height, 2 * width, 2 * height, 255);
 }
+void Drawboss(char* ptr, float eposx, float eposy, float width, float height)
+{
+
+	//CP_Font_DrawTextB(ptr, (eposx-10) * width, (eposy - 1) * height);
+	CP_Font_DrawTextBox(ptr, (eposx-3) * width, (eposy - 5.5f) * height, 300);
+    CP_Graphics_DrawRect(eposx * width, (eposy-1) * height, 3*width, 5*height);
+}

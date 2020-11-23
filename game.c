@@ -7,6 +7,7 @@
 #include "gameover.h"
 #include "gamelvl2.h"
 #include "transitiontolvl2.h"
+#include "bosslvl.h"
 
 #define FONT_SIZE 25.0f 
 #define FONT_SIZE2 35.0f
@@ -250,6 +251,7 @@ void game_update(void)
 		memset(string1, 0, 20 * sizeof(char));
 		memset(string2, 0, 20 * sizeof(char));
 		memset(string3, 0, 20 * sizeof(char));
+		//CP_Engine_SetNextGameState(transitiontolvl2_init, transitiontolvl2_update, transitiontolvl2_exit);
 		CP_Engine_SetNextGameState(transitiontolvl2_init, transitiontolvl2_update, transitiontolvl2_exit);
 	}
 
@@ -478,9 +480,9 @@ void game_update(void)
 		numofconsecutivecorrect = 0;
 	}
 
-	if (velx == -0.05f)
+	if (velx == -0.07f)
 	{
-		if (numofconsecutivewrong >= 3)
+		if (numofconsecutivewrong >= 2)
 		{
 			velx = -0.10f;
 			numofconsecutivewrong = 0;
@@ -491,7 +493,7 @@ void game_update(void)
 	{
 		if (numofconsecutivecorrect >= 2)
 		{
-			velx = -0.05f;
+			velx = -0.07f;
 			numofconsecutivecorrect = 0;
 		}
 	}
