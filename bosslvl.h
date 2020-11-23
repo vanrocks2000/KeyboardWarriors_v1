@@ -12,3 +12,4 @@ int numofcharactersinput4(void);
 void ConvertWordToInt4(void);
 
 void Keyinput4(void);
+void DisplayNumOfLines(int numberlines, float width, float height);

@@ -17,8 +17,9 @@
 #define LIVES 10
 #define KILLS 10
 #define word 100
+#define LINES 10
 
-#define MAXC 100
+#define MAXC 1000
 #define MAXW 20
 
 int displaywidth, displayheight;
@@ -31,8 +32,10 @@ char scorebuffer[SCORE];
 int lives;
 char lifebuffer[LIVES];
 char wordbuf[word];
-int numkilled;
-char killedbuffer[KILLS];
+int numlines;
+char linesbuffer[KILLS];
+int numofconsecutivewrong;
+int numofconsecutivecorrect;
 
 
 CP_Color fontColour;
@@ -96,11 +99,13 @@ void game4_init(void)
 	enemyy1 = 10;
 	playerx = 2;
 	playery = 10;
-	velx = -0.15f;
-	numkilled = 20;
+	velx = -0.01f;
+	numlines = 7;
 	memset(userinput4, 0, MAXC * sizeof(char));
 	nextchar4 = 0;
-
+	lives = 1;
+	numofconsecutivecorrect = 0;
+	numofconsecutivewrong = 0;
 
 
 }
@@ -125,7 +130,8 @@ void game4_update(void)
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
 	DisplayLives(lives, gridwidth, gridheight);
-	DisplayNumberOfEnemiesLeftToKill(numkilled, gridwidth, gridheight);
+	DisplayNumOfLines(numlines, gridwidth, gridheight);
+	
 	CP_Settings_Fill(black);
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 
@@ -144,7 +150,7 @@ void game4_update(void)
 	pstr1 = string1;
 	
 	
-	Drawboss(pstrboss, enemyx1, enemyy1, gridwidth, gridheight);
+	Drawboss(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
 
 	enemyx1 += velx;
 
@@ -153,10 +159,10 @@ void game4_update(void)
 
 	Keyinput4();
 	//displays words typed on screen
-	CP_Font_DrawText(ui4, 550, 120);
+	CP_Font_DrawTextBox(ui4, 0, 120, 1280);
 
 
-	if (numkilled == 0)
+	if (numlines == 0)
 	{
 		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
 	}
@@ -170,15 +176,15 @@ void game4_update(void)
 			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
 			time = 0;
 			score = 0;
-			numkilled = 0;
+			numlines = 0;
 			memset(userinput4, 0, MAXC * sizeof(char));
-			memset(string1, 0, 20 * sizeof(char));
+			memset(string1, 0, MAXC * sizeof(char));
 			
 		}
 		else
 		{
 			numofcorrect4 = 0;
-			memset(string1, 0, 20 * sizeof(char));
+			memset(string1, 0, MAXC * sizeof(char));
 			enemyx1 = 28;
 			enemyy1 = 10;
 			b1 = RandomWord4();
@@ -211,19 +217,22 @@ void game4_update(void)
 				{
 					numofcorrect4 = 0;
 					score++;
-					numkilled--;
+					numlines--;
 					memset(userinput4, 0, MAXC * sizeof(char));
 					memset(string1, 0, MAXC * sizeof(char));
 					nextchar4 = 0;
-					enemyx1 = 28;
+					enemyx1 = enemyx1 + 3;
 					enemyy1 = 10;
 					b1 = RandomWord4();
+					numofconsecutivecorrect++;
+					numofconsecutivewrong = 0;
 				}
 				else if (numofcorrect4 != nboss)
 				{
 					numofcorrect4 = 0;
 					memset(userinput4, 0, MAXC * sizeof(char));
 					nextchar4 = 0;
+					numofconsecutivewrong++;
 				}
 			}
 
@@ -232,11 +241,34 @@ void game4_update(void)
 				numofcorrect4 = 0;
 				memset(userinput4, 0, MAXC * sizeof(char));
 				nextchar4 = 0;
+				numofconsecutivewrong++;
 			}
 		}
 
 		
 		
+	}
+	if (numofconsecutivewrong > 0)
+	{
+		numofconsecutivecorrect = 0;
+	}
+
+	if (velx == -0.01f)
+	{
+		if (numofconsecutivewrong >= 1)
+		{
+			velx = -0.02f;
+			numofconsecutivewrong = 0;
+		}
+	}
+
+	if (velx == -0.02f)
+	{
+		if (numofconsecutivecorrect >= 1)
+		{
+			velx = -0.01f;
+			numofconsecutivecorrect = 0;
+		}
 	}
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
 	{
@@ -253,25 +285,25 @@ void game4_exit(void)
 
 int RandomWord4(void)
 {
-	x = CP_Random_RangeInt(0, 0);
+	x = CP_Random_RangeInt(0, 3);
 	return x;
 }
 
 char* wordlist4(int choice)
 {
-	p[0].buffer = "INTERNET SAFETY IS VERY IMPORTANT";
-	pstrboss = "HOW TO PLAY\n\
-		------------\n\
-		There will be 3 rows of enemies approaching you.\n\
-		Move your player up and down using the upand down\n\
- arrow keys to target the enemy you wish to attack" ;
-	p[1].buffer = "B";
-	p[2].buffer = "C";
-	p[3].buffer = "D";
-	p[4].buffer = "E";
-	p[5].buffer = "F";
-	p[6].buffer = "G";
-	p[7].buffer = "H";
+	p[0].buffer = "INTERNET SAFETY IS A LOT MORE THAN JUST ENSURING THAT YOUR COMPUTER HAS THE LATEST ANTIVIRUS AND FIREWALL SOFTWARE";
+	/*pstrboss = "Internet safety is a lot more\n\
+    than just ensuring that your\n\
+    computer has the latest\n\
+    antivirus and firewall\n\
+	software installed. " ;*/
+	p[1].buffer = "IT IS ABOUT PRACTISING GOOD CYBER HYGIENE HABITS AND NOT FALLING PREY TO ONLINE SCAMS";
+	p[2].buffer = "REPORT HARMFUL POSTS AND DO NOT RESPOND, BLOCK THE USERS INSTEAD";
+	p[3].buffer = "ASK FOR A MODERATOR, ADMINISTRATOR OR SITE OWNER TO INTERVENE";
+	p[4].buffer = "NEVER GIVE OUT YOUR PERSONAL INFORMATION ONLINE TO STRANGERS";
+	p[5].buffer = "IGNORE TROLLING ATTEMPTS AND AVOID TROLLING THE TROLLS";
+	p[6].buffer = "BE COURTEOUS AND CONSIDERATE OF EVERYBODY ONLINE";
+	/*p[7].buffer = "H";
 	p[8].buffer = "I";
 	p[9].buffer = "J";
 	p[10].buffer = "K";
@@ -279,7 +311,7 @@ char* wordlist4(int choice)
 	p[12].buffer = "M";
 	p[13].buffer = "N";
 	p[14].buffer = "O";
-	p[15].buffer = "P";
+	p[15].buffer = "P";*/
 
 	char* wordpicked = p[choice].buffer;
 
@@ -319,6 +351,25 @@ void ConvertWordToInt4(void)
 void Keyinput4(void)
 {
 	//whatever that is typed first is stored in 0 position in array, subsequent char is stored in nth position +1
+	if (*(ui4) != '\0')
+	{
+		if (CP_Input_KeyTriggered(KEY_BACKSPACE))
+		{
+			nextchar4--;
+			*(ui4 + nextchar4) = '\0';
+
+		}
+	}
+	if (CP_Input_KeyTriggered(KEY_COMMA))
+	{
+		*(ui4 + nextchar4) = ',';
+		nextchar4++;
+	}
+	if (CP_Input_KeyTriggered(KEY_PERIOD))
+	{
+		*(ui4 + nextchar4) = '.';
+		nextchar4++;
+	}
 	if (CP_Input_KeyTriggered(KEY_SPACE))
 	{
 		*(ui4 + nextchar4) = ' ';
@@ -458,4 +509,11 @@ void Keyinput4(void)
 
 
 
+}
+
+void DisplayNumOfLines(int numberlines, float width, float height)
+{
+	_itoa_s(numlines, linesbuffer, LINES, 10);
+	CP_Font_DrawText(linesbuffer, (float)26 * width, (float)1 * height);
+	CP_Font_DrawText("Lines Left:", (float)21 * width, (float)1 * height);
 }

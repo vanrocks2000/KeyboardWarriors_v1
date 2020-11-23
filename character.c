@@ -123,6 +123,6 @@ void Drawboss(char* ptr, float eposx, float eposy, float width, float height)
 {
 
 	//CP_Font_DrawTextB(ptr, (eposx-10) * width, (eposy - 1) * height);
-	CP_Font_DrawTextBox(ptr, (eposx - 10) * width, (eposy - 1) * height, 100);
-    CP_Graphics_DrawRect(eposx * width, (eposy-1) * height, 2*width, 2*height);
+	CP_Font_DrawTextBox(ptr, (eposx-3) * width, (eposy - 5.5f) * height, 300);
+    CP_Graphics_DrawRect(eposx * width, (eposy-1) * height, 3*width, 5*height);
 }
