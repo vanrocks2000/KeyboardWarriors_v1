@@ -8,6 +8,7 @@
 #include "gameover.h"
 #include "transitiontolvl3.h"
 #include "bosslvl.h"
+#include "transitiontolvl4.h"
 
 #define FONT_SIZE 25.0f 
 #define NUMBER_STRINGS 5
@@ -179,7 +180,7 @@ void game3_update(void)
 
 	if (numkilled == 0)
 	{
-		CP_Engine_SetNextGameState(game4_init, game4_update, game4_exit);
+		CP_Engine_SetNextGameState(transitiontolvl4_init, transitiontolvl4_update, transitiontolvl4_exit);
 	}
 
 	//minus life if enemy reaches playerline

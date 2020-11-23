@@ -10,7 +10,7 @@
 #include "bosslvl.h"
 
 
-#define FONT_SIZE 50.0f 
+#define FONT_SIZE 40.0f 
 CP_Color fontColour1, fontColour2;
 
 
@@ -34,13 +34,14 @@ void transitiontolvl4_update(void)
 
 	fontColour1 = CP_Color_Create(13, 50, 213, 255);
 	CP_Settings_Fill(fontColour1);
-	CP_Font_DrawText("Congratulations On Clearing Level 3 !", 300, 200);
-	CP_Font_DrawText("Level 3 : Type 7 lines of sentences correctly to defeat the boss!", 350, 300);
-	CP_Font_DrawText("Please press spacebar to proceed to level 3 !", 250, 400);
+	CP_Font_DrawText("Congratulations On Clearing Level 3 !", 225, 200);
+	CP_Font_DrawText("Level 4 : Type 7 sentences correctly to defeat boss!", 50, 300);
+	CP_Font_DrawText("Please press spacebar to proceed to level 4 !", 140, 400);
 
 	fontColour2 = CP_Color_Create(255, 0, 0, 255);
 	CP_Settings_Fill(fontColour2);
-	CP_Font_DrawText("*Warning: Typing a sentence wrong will increase the speed of the boss.", 300, 500);
+	CP_Font_DrawText("*Warning: Typing a sentence wrong will ", 225, 500);
+	CP_Font_DrawText("increase the speed of the boss.", 310, 550);
 
 	if (CP_Input_KeyTriggered(KEY_SPACE))
 	{
