@@ -8,6 +8,7 @@
 #include "gameover.h"
 #include "transitiontolvl3.h"
 #include "bosslvl.h"
+#include "transitiontolvl4.h"
 
 #define FONT_SIZE 25.0f 
 #define FONT_SIZE2 35.0f
@@ -46,6 +47,7 @@ int n1, n2, n3;
 
 int nextchar3 = 0;
 int numofcorrect3 = 0;
+int current_frame3 = 0;
 int x, y1, y2, y3;
 char* wordchosen;
 char* wordchosen2;
@@ -104,7 +106,7 @@ void game3_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.03f;
-	numkilled = 20;
+	numkilled = 1;
 	lives = 5;
 	memset(userinput3, 0, MAXC * sizeof(char));
 	nextchar3 = 0;
@@ -164,9 +166,86 @@ void game3_update(void)
 	pstr2 = string2;
 	pstr3 = string3;
 
-	Drawenemy(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
-	Drawenemy(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
-	Drawenemy(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+	if (current_frame3 == 0)
+	{
+		Draw3enemy(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3++;
+	}
+
+	else if (current_frame3 == 1)
+	{
+		Draw3enemy1(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy1(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy1(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3++;
+	}
+
+	else if (current_frame3 == 2)
+	{
+		Draw3enemy2(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy2(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy2(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3++;
+	}
+
+	else if (current_frame3 == 3)
+	{
+		Draw3enemy3(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy3(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy3(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3++;
+	}
+
+	else if (current_frame3 == 4)
+	{
+		Draw3enemy4(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy4(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy4(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3++;
+	}
+
+	else if (current_frame3 == 5)
+	{
+		Draw3enemy5(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy5(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy5(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3++;
+	}
+
+	else if (current_frame3 == 6)
+	{
+		Draw3enemy6(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy6(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy6(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3++;
+	}
+
+	else if (current_frame3 == 7)
+	{
+		Draw3enemy7(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy7(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy7(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3++;
+	}
+
+	else if (current_frame3 == 8)
+	{
+		Draw3enemy8(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy8(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy8(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3++;
+	}
+
+	else if (current_frame3 == 9)
+	{
+		Draw3enemy9(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
+		Draw3enemy9(pstr2, enemyx2, enemyy2, gridwidth, gridheight);
+		Draw3enemy9(pstr3, enemyx3, enemyy3, gridwidth, gridheight);
+		current_frame3 = 0;
+	}
+
 	enemyx1 += velx;
 	enemyx2 += velx;
 	enemyx3 += velx;
@@ -181,7 +260,7 @@ void game3_update(void)
 
 	if (numkilled == 0)
 	{
-		CP_Engine_SetNextGameState(game4_init, game4_update, game4_exit);
+		CP_Engine_SetNextGameState(transitiontolvl4_init, transitiontolvl4_update, transitiontolvl4_exit);
 	}
 
 	//minus life if enemy reaches playerline

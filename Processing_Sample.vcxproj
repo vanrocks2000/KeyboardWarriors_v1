@@ -203,6 +203,7 @@ xcopy "$(ProjectDir)Assets\*" "$(OutDir)Assets\" /s /r /y /q</Command>
     <ClCompile Include="transitiontolvl1.c" />
     <ClCompile Include="transitiontolvl2.c" />
     <ClCompile Include="transitiontolvl3.c" />
+    <ClCompile Include="transitiontolvl4.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bosslvl.h" />
@@ -216,6 +217,7 @@ xcopy "$(ProjectDir)Assets\*" "$(OutDir)Assets\" /s /r /y /q</Command>
     <ClInclude Include="transitiontolvl1.h" />
     <ClInclude Include="transitiontolvl2.h" />
     <ClInclude Include="transitiontolvl3.h" />
+    <ClInclude Include="transitiontolvl4.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
