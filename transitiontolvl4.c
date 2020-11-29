@@ -9,7 +9,6 @@
 #include "transitiontolvl4.h"
 #include "bosslvl.h"
 
-
 #define FONT_SIZE 40.0f 
 CP_Color fontColour1, fontColour2;
 

@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #define FONT_SIZE 50 
 #define FONT_SIZE2 100
-#define TIME 10
-#define SCORE 10
+#define TIME 100
+#define SCORE 100
 float totaltimesurvived;
 char finaltimebuffer[TIME];
 int totalscore;
@@ -74,14 +74,18 @@ void gameover_init(void)
 	
 
 	totaltimesurvived = GetFinalTime();
-	_itoa_s((int)totaltimesurvived, finaltimebuffer, TIME, 10);
-	CP_Font_DrawText(finaltimebuffer, 650, 300);
-	CP_Font_DrawText("Seconds Survived:", 50, 300);
+	//_itoa_s((int)totaltimesurvived, finaltimebuffer, TIME, 10);
+	//CP_Font_DrawText(finaltimebuffer, 650, 300);
+	//CP_Font_DrawText("Seconds Survived:", 50, 300);
+	snprintf(finaltimebuffer, TIME, "Time Survived : %d seconds", (int)totaltimesurvived);
+	CP_Font_DrawText(finaltimebuffer, 50, 300);
 
 	totalscore = GetFinalScore();
-	_itoa_s((int)totalscore, finalscorebuffer, SCORE, 10);
-	CP_Font_DrawText(finalscorebuffer, 960, 500);
-	CP_Font_DrawText("Final Score:", 50, 500);
+	//_itoa_s((int)totalscore, finalscorebuffer, SCORE, 10);
+	//CP_Font_DrawText(finalscorebuffer, 650, 500);
+	//CP_Font_DrawText("Final Score:", 50, 500);
+	snprintf(finalscorebuffer, SCORE, "Final Score : %d", totalscore);
+	CP_Font_DrawText(finalscorebuffer, 50, 500);
 
 
 }

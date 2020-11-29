@@ -9,7 +9,8 @@
 #include "transitiontolvl2.h"
 #include "bosslvl.h"
 
-#define FONT_SIZE 33.0f 
+#define FONT_SIZE 25.0f 
+#define FONT_SIZE2 35.0f
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 #define TIME 10
@@ -147,7 +148,7 @@ void game4_update(void)
 	
 
 	pstr1 = string1;
-	
+	CP_Settings_TextSize(FONT_SIZE2);
 	Drawboss(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
 
 	enemyx1 += velx;
@@ -279,6 +280,8 @@ void game4_update(void)
 void game4_exit(void)
 {
 	// shut down the gamestate and cleanup any dynamic memory
+	memset(userinput4, 0, MAXC * sizeof(char));
+	memset(string1, 0, MAXC * sizeof(char));
 }
 
 int RandomWord4(void)

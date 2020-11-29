@@ -110,7 +110,7 @@ void game_init(void)
 	playery = 10;
 	velx = -0.07f;
 	lives = 5;
-	numkilled = 1;
+	numkilled = 15;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
 	memset(userinput, 0, MAXC * sizeof(char));
@@ -513,6 +513,10 @@ void game_update(void)
 void game_exit(void)
 {
 	// shut down the gamestate and cleanup any dynamic memory
+	memset(userinput, 0, MAXC * sizeof(char));
+	memset(string1, 0, 20 * sizeof(char));
+	memset(string2, 0, 20 * sizeof(char));
+	memset(string3, 0, 20 * sizeof(char));
 }
 
 int RandomWord(void)
