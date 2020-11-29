@@ -114,6 +114,76 @@ void Draw2enemy7(char* ptr, float eposx, float eposy, float width, float height)
 	CP_Image_Draw(second_enemy7, eposx * width, eposy * height, 2 * width, 2 * height, 255);
 }
 
+void Draw3enemy(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy = CP_Image_Load("./Assets/Enemy3.png");
+	CP_Image_Draw(third_enemy, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
+void Draw3enemy1(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy1 = CP_Image_Load("./Assets/Enemy3frame1.png");
+	CP_Image_Draw(third_enemy1, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
+void Draw3enemy2(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy2 = CP_Image_Load("./Assets/Enemy3frame2.png");
+	CP_Image_Draw(third_enemy2, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
+void Draw3enemy3(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy3 = CP_Image_Load("./Assets/Enemy3frame3.png");
+	CP_Image_Draw(third_enemy3, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
+void Draw3enemy4(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy4 = CP_Image_Load("./Assets/Enemy3frame4.png");
+	CP_Image_Draw(third_enemy4, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
+void Draw3enemy5(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy5 = CP_Image_Load("./Assets/Enemy3frame5.png");
+	CP_Image_Draw(third_enemy5, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
+void Draw3enemy6(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy6 = CP_Image_Load("./Assets/Enemy3frame6.png");
+	CP_Image_Draw(third_enemy6, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
+void Draw3enemy7(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy7 = CP_Image_Load("./Assets/Enemy3frame7.png");
+	CP_Image_Draw(third_enemy7, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
+void Draw3enemy8(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy8 = CP_Image_Load("./Assets/Enemy3frame8.png");
+	CP_Image_Draw(third_enemy8, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
+void Draw3enemy9(char* ptr, float eposx, float eposy, float width, float height)
+{
+	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
+	CP_Image third_enemy9 = CP_Image_Load("./Assets/Enemy3frame9.png");
+	CP_Image_Draw(third_enemy9, eposx * width, eposy * height, 2 * width, 2 * height, 255);
+}
+
 void Drawplayer(float pposx, float pposy, float width, float height)
 {
 	CP_Image player = CP_Image_Load("./Assets/Player.png");
