@@ -48,7 +48,6 @@ int nboss;
 
 int nextchar4 = 0;
 int numofcorrect4 = 0;
-
 int x, y1, y2, y3, b1;
 char* wordchosen;
 
@@ -148,7 +147,6 @@ void game4_update(void)
 	
 
 	pstr1 = string1;
-	
 	
 	Drawboss(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
 
