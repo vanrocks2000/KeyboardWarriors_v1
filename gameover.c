@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define FONT_SIZE 50 
+#define FONT_SIZE2 100
 #define TIME 10
 #define SCORE 10
 float totaltimesurvived;
@@ -24,17 +25,17 @@ void gameover_init(void)
 
 	b1.width = 400;
 	b1.height = 150;
-	b1.x = 420;
+	b1.x = 800;
 	b1.y = 55;
 
 	b2.width = 400;
 	b2.height = 150;
-	b2.x = 420;
+	b2.x = 800;
 	b2.y = 250;
 
 	b3.width = 400;
 	b3.height = 150;
-	b3.x = 420;
+	b3.x = 800;
 	b3.y = 450;
 
 	//set background
@@ -58,24 +59,29 @@ void gameover_init(void)
 	CP_Image exit = CP_Image_Load("./Assets/Exit.png");
 	CP_Image_Draw(exit, b1.x + 200, b1.y + 470, b1.width, b1.height, 255);
 
+	
 
 	CP_Color fontColour = CP_Color_Create(0, 0, 0, 255);
 	CP_Settings_Fill(fontColour);
+	CP_Settings_TextSize(FONT_SIZE2);
+	CP_Font_DrawText("GAME OVER:", 50, 100);
 
 	CP_Settings_TextSize(FONT_SIZE);
 	//CP_Font_DrawText("Main Menu", 540, 125);
 	//CP_Font_DrawText("Replay", 540, 325);
 	//CP_Font_DrawText("Exit Game", 540, 525);
 
+	
+
 	totaltimesurvived = GetFinalTime();
 	_itoa_s((int)totaltimesurvived, finaltimebuffer, TIME, 10);
-	CP_Font_DrawText(finaltimebuffer, 130, 350);
+	CP_Font_DrawText(finaltimebuffer, 650, 300);
 	CP_Font_DrawText("Seconds Survived:", 50, 300);
 
 	totalscore = GetFinalScore();
 	_itoa_s((int)totalscore, finalscorebuffer, SCORE, 10);
-	CP_Font_DrawText(finalscorebuffer, 960, 350);
-	CP_Font_DrawText("Final Score:", 900, 300);
+	CP_Font_DrawText(finalscorebuffer, 960, 500);
+	CP_Font_DrawText("Final Score:", 50, 500);
 
 
 }

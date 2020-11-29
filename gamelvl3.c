@@ -413,14 +413,14 @@ char* wordlist3(int choice)
 	p[1].buffer = "M@LW@R3!";
 	p[2].buffer = "*$!@*&*";
 	p[3].buffer = "($P00F1NG)";
-	p[4].buffer = "ENCRYP7iNG";
+	p[4].buffer = "ENCRYP7ING";
 	p[5].buffer = "@DWARV3";
 	p[6].buffer = "A77ACK!!!";
 	p[7].buffer = "F1R3W@LL";
 	p[8].buffer = "******";
 	p[9].buffer = "#WHIT3HAT";
-	p[10].buffer = "S P @ M";
-	p[11].buffer = "CACHE^";
+	p[10].buffer = "SP@M";
+	p[11].buffer = "C@CHE";
 	p[12].buffer = "H@CK3RRR";
 	p[13].buffer = "*ANONYMOUS*";
 
