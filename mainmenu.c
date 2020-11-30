@@ -3,7 +3,7 @@
 #include "game.h"
 #include "mainmenu.h"
 #include "howtoplay.h"
-#include "gamelvl3.h"
+#include "bosslvl.h"
 #include "transitiontolvl1.h"
 #define FONT_SIZE 100
 
@@ -110,7 +110,7 @@ void mainmenu_init(void)
 		//Add code for How to play button
 		if (CP_Input_KeyTriggered(KEY_SPACE))
 		{
-			CP_Engine_SetNextGameState(game3_init, game3_update, game3_exit);
+			CP_Engine_SetNextGameState(game4_init, game4_update, game4_exit);
 		}
 		if (mouseX > a1.x - 150 && mouseX < (a1.x + a1.width))
 		{

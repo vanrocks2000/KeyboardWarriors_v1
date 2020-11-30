@@ -101,7 +101,7 @@ void game4_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.01f;
-	numlines = 7;
+	numlines = 1;
 	memset(userinput4, 0, MAXC * sizeof(char));
 	nextchar4 = 0;
 	numofconsecutivecorrect = 0;
