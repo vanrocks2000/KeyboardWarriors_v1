@@ -109,8 +109,8 @@ void game_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.07f;
-	lives = 5;
-	numkilled = 1;
+	lives = 3;
+	numkilled = 15;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
 	memset(userinput, 0, MAXC * sizeof(char));
@@ -768,7 +768,7 @@ void DisplayTime(float timeelapsed, float width, float height)
 {
 	CP_Settings_TextSize(FONT_SIZE);
 	_itoa_s((int)timeelapsed, timebuffer, TIME, 10);
-	CP_Font_DrawText(timebuffer, (float)3 * width, (float)1 * height);
+	CP_Font_DrawText(timebuffer, (float)4 * width, (float)1 * height);
 	CP_Font_DrawText("Time:", (float)1 * width, (float)1 * height);
 
 }
@@ -782,7 +782,7 @@ void DisplayLives(int livesleft, float width, float height)
 {
 	CP_Settings_TextSize(FONT_SIZE);
 	_itoa_s(lives, lifebuffer, LIVES, 10);
-	CP_Font_DrawText(lifebuffer, (float)12.3f * width, (float)1 * height);
+	CP_Font_DrawText(lifebuffer, (float)12 * width, (float)1 * height);
 	CP_Font_DrawText("Lives Left:", (float)8 * width, (float)1 * height);
 
 }
@@ -791,7 +791,7 @@ void DisplayScore(int currentscore, float width, float height)
 {
 	CP_Settings_TextSize(FONT_SIZE);
 	_itoa_s(score, scorebuffer, SCORE, 10);
-	CP_Font_DrawText(scorebuffer, (float)17.5 * width, (float)1 * height);
+	CP_Font_DrawText(scorebuffer, (float)18 * width, (float)1 * height);
 	CP_Font_DrawText("Score:", (float)15 * width, (float)1 * height);
 
 }

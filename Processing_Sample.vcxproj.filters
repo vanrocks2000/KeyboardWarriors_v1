@@ -48,6 +48,9 @@
     <ClCompile Include="bosslvl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="youwin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mainmenu.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="transitiontolvl4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="youwin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

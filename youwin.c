@@ -20,7 +20,8 @@ struct Buttons
 	float x;
 	float y;
 } b1, b2, b3;
-void gameover_init(void)
+
+void youwin_init(void)
 {
 
 	b1.width = 400;
@@ -59,25 +60,25 @@ void gameover_init(void)
 	CP_Image exit = CP_Image_Load("./Assets/Exit.png");
 	CP_Image_Draw(exit, b1.x + 200, b1.y + 470, b1.width, b1.height, 255);
 
-	
+
 
 	CP_Color fontColour = CP_Color_Create(0, 0, 0, 255);
 	CP_Settings_Fill(fontColour);
 	CP_Settings_TextSize(FONT_SIZE2);
-	CP_Font_DrawText("GAME OVER:", 50, 100);
+	CP_Font_DrawText("YOU WIN!!!!", 50, 100);
 
 	CP_Settings_TextSize(FONT_SIZE);
 	//CP_Font_DrawText("Main Menu", 540, 125);
 	//CP_Font_DrawText("Replay", 540, 325);
 	//CP_Font_DrawText("Exit Game", 540, 525);
 
-	
+
 
 	totaltimesurvived = GetFinalTime();
 	//_itoa_s((int)totaltimesurvived, finaltimebuffer, TIME, 10);
 	//CP_Font_DrawText(finaltimebuffer, 650, 300);
 	//CP_Font_DrawText("Seconds Survived:", 50, 300);
-	snprintf(finaltimebuffer, TIME, "Time Survived : %d secs", (int)totaltimesurvived);
+	snprintf(finaltimebuffer, TIME, "Time Survived : %d seconds", (int)totaltimesurvived);
 	CP_Font_DrawText(finaltimebuffer, 50, 300);
 
 	totalscore = GetFinalScore();
@@ -91,13 +92,13 @@ void gameover_init(void)
 }
 
 
-void gameover_update(void)
+void youwin_update(void)
 {
-	
+
 
 	float mouseX = CP_Input_GetMouseX(), mouseY = CP_Input_GetMouseY();
 
-	
+
 
 	gameover_init();
 	if (mouseX > b1.x && mouseX < (b1.x + b1.width))
@@ -178,7 +179,7 @@ void gameover_update(void)
 
 }
 
-void gameover_exit(void)
+void youwin_exit(void)
 {
 
 }

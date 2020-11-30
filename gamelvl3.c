@@ -360,7 +360,7 @@ void game3_update(void)
 				if (numofcorrect3 == n1)
 				{
 					numofcorrect3 = 0;
-					score++;
+					score += 50;
 					numkilled--;
 					memset(userinput3, 0, MAXC * sizeof(char));
 					memset(string1, 0, MAXC * sizeof(char));
@@ -495,7 +495,7 @@ char* wordlist3(int choice)
 	p[0].buffer = "#PH1$HING";
 	p[1].buffer = "M@LW@R3!";
 	p[2].buffer = "*$!@*&*";
-	p[3].buffer = "($P00F1NG)";
+	p[3].buffer = "($POOF1NG)";
 	p[4].buffer = "ENCRYP7ING";
 	p[5].buffer = "@DWARV3";
 	p[6].buffer = "A77ACK!!!";
