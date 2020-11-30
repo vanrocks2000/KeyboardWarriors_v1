@@ -46,9 +46,9 @@ void gameover_init(void)
 
 	CP_Color rectColour = CP_Color_Create(215, 196, 130, 255);
 	CP_Settings_Fill(rectColour);
-	CP_Graphics_DrawRect(b1.x, b1.y, b1.width, b1.height);
-	CP_Graphics_DrawRect(b2.x, b2.y, b2.width, b2.height);
-	CP_Graphics_DrawRect(b3.x, b3.y, b3.width, b3.height);
+	//CP_Graphics_DrawRect(b1.x, b1.y, b1.width, b1.height);
+	//CP_Graphics_DrawRect(b2.x, b2.y, b2.width, b2.height);
+	//CP_Graphics_DrawRect(b3.x, b3.y, b3.width, b3.height);
 
 	CP_Image mainmenu = CP_Image_Load("./Assets/MainMenu.png");
 	CP_Image_Draw(mainmenu, b1.x + 200, b1.y + 70, b1.width, b1.height, 255);
