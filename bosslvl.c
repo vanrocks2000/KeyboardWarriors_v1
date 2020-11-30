@@ -8,6 +8,7 @@
 #include "gameover.h"
 #include "transitiontolvl2.h"
 #include "bosslvl.h"
+#include "youwin.h"
 
 #define FONT_SIZE 25.0f 
 #define FONT_SIZE2 35.0f
@@ -103,7 +104,6 @@ void game4_init(void)
 	numlines = 7;
 	memset(userinput4, 0, MAXC * sizeof(char));
 	nextchar4 = 0;
-	lives = 1;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
 
@@ -163,7 +163,7 @@ void game4_update(void)
 
 	if (numlines == 0)
 	{
-		CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
+		CP_Engine_SetNextGameState(youwin_init, youwin_update, youwin_exit);
 	}
 
 	//minus life if enemy reaches playerline
@@ -215,7 +215,7 @@ void game4_update(void)
 				if (numofcorrect4 == nboss)
 				{
 					numofcorrect4 = 0;
-					score++;
+					score += 50;
 					numlines--;
 					memset(userinput4, 0, MAXC * sizeof(char));
 					memset(string1, 0, MAXC * sizeof(char));

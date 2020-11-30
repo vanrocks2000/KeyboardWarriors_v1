@@ -345,7 +345,7 @@ void game2_update(void)
 				if (numofcorrect2 == n1)
 				{
 					numofcorrect2 = 0;
-					score++;
+					score += 10;
 					numkilled--;
 					memset(userinput2, 0, MAXC * sizeof(char));
 					memset(string1, 0, MAXC * sizeof(char));

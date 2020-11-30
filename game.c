@@ -109,7 +109,7 @@ void game_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.07f;
-	lives = 5;
+	lives = 3;
 	numkilled = 15;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
