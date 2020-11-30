@@ -10,7 +10,7 @@
 #include "bosslvl.h"
 
 #define FONT_SIZE 25.0f 
-#define FONT_SIZE2 35.0f
+#define FONT_SIZE2 30.0f
 #define NUMBER_STRINGS 5
 #define STRING_MAX_SIZE 10
 #define TIME 10
@@ -286,28 +286,23 @@ void game4_exit(void)
 
 int RandomWord4(void)
 {
-	x = CP_Random_RangeInt(0, 3);
+	x = CP_Random_RangeInt(0, 9);
 	return x;
 }
 
 char* wordlist4(int choice)
 {
-	p[0].buffer = "INTERNET SAFETY IS A LOT MORE THAN JUST ENSURING THAT YOUR COMPUTER HAS THE LATEST ANTIVIRUS AND FIREWALL SOFTWARE";
-	/*pstrboss = "Internet safety is a lot more\n\
-    than just ensuring that your\n\
-    computer has the latest\n\
-    antivirus and firewall\n\
-	software installed. " ;*/
-	p[1].buffer = "IT IS ABOUT PRACTISING GOOD CYBER HYGIENE HABITS AND NOT FALLING PREY TO ONLINE SCAMS";
+	p[0].buffer = "INSTALL ANTIVIRUS AND FIREWALL SOFTWARES AND UPDATE THEM REGULARLY";
+	p[1].buffer = "PRACTISE GOOD CYBER HYGIENE HABITS AND TRY NOT TO FALL PREY TO ONLINE SCAMS";
 	p[2].buffer = "REPORT HARMFUL POSTS AND DO NOT RESPOND, BLOCK THE USERS INSTEAD";
 	p[3].buffer = "ASK FOR A MODERATOR, ADMINISTRATOR OR SITE OWNER TO INTERVENE";
-	p[4].buffer = "NEVER GIVE OUT YOUR PERSONAL INFORMATION ONLINE TO STRANGERS";
-	p[5].buffer = "IGNORE TROLLING ATTEMPTS AND AVOID TROLLING THE TROLLS";
-	p[6].buffer = "BE COURTEOUS AND CONSIDERATE OF EVERYBODY ONLINE";
-	/*p[7].buffer = "H";
-	p[8].buffer = "I";
-	p[9].buffer = "J";
-	p[10].buffer = "K";
+	p[4].buffer = "NEVER GIVE OUT YOUR PERSONAL INFORMATION TO STRANGERS ONLLINE";
+	p[5].buffer = "PLEASE IGNORE TROLLING ATTEMPTS AND AVOID TROLLING THE TROLLS";
+	p[6].buffer = "TRY TO BE COURTEOUS AND BE CONSIDERATE OF EVERYBODY ONLINE";
+	p[7].buffer = "ALWAYS MAKE SURE THAT YOU CREATE UNIQUE AND STRONG PASSWORDS";
+	p[8].buffer = "AVOID CLICKING ON SUSPICIOUS LINKS FROM UNTRUSTED SOURCES AND EMAILS";
+	p[9].buffer = "BE AWARE OF ANY UNAUTHORIZED USE OF YOUR PERSONAL INFORMATION";
+	/*p[10].buffer = "A";
 	p[11].buffer = "L";
 	p[12].buffer = "M";
 	p[13].buffer = "N";
@@ -515,6 +510,6 @@ void Keyinput4(void)
 void DisplayNumOfLines(int numberlines, float width, float height)
 {
 	_itoa_s(numlines, linesbuffer, LINES, 10);
-	CP_Font_DrawText(linesbuffer, (float)26 * width, (float)1 * height);
+	CP_Font_DrawText(linesbuffer, (float)25.2f * width, (float)1 * height);
 	CP_Font_DrawText("Lines Left:", (float)21 * width, (float)1 * height);
 }

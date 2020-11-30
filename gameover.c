@@ -77,7 +77,7 @@ void gameover_init(void)
 	//_itoa_s((int)totaltimesurvived, finaltimebuffer, TIME, 10);
 	//CP_Font_DrawText(finaltimebuffer, 650, 300);
 	//CP_Font_DrawText("Seconds Survived:", 50, 300);
-	snprintf(finaltimebuffer, TIME, "Time Survived : %d seconds", (int)totaltimesurvived);
+	snprintf(finaltimebuffer, TIME, "Time Survived : %d secs", (int)totaltimesurvived);
 	CP_Font_DrawText(finaltimebuffer, 50, 300);
 
 	totalscore = GetFinalScore();
