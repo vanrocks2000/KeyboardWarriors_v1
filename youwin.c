@@ -4,6 +4,7 @@
 #include "gameover.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "bosslvl.h"
 #define FONT_SIZE 45 
 #define FONT_SIZE2 100
 #define TIME 100
