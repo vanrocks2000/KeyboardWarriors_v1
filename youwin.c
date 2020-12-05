@@ -1,12 +1,12 @@
 #include "cprocessing.h"
 #include "MainMenu.h"
 #include "game.h"
-#include "youwin.h"
+#include "gameover.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "bosslvl.h"
 #define FONT_SIZE 45 
-#define FONT_SIZE2 150
+#define FONT_SIZE2 100
 #define TIME 100
 #define SCORE 100
 float totaltimesurvived;
@@ -101,7 +101,7 @@ void youwin_update(void)
 
 
 
-	youwin_init();
+	gameover_init();
 	if (mouseX > b1.x && mouseX < (b1.x + b1.width))
 	{
 		if (mouseY > b1.y && mouseY < (b1.y + b1.height))
