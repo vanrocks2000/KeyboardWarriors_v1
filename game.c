@@ -8,6 +8,7 @@
 #include "gamelvl2.h"
 #include "transitiontolvl2.h"
 #include "bosslvl.h"
+#include "mainmenu.h"
 
 #define FONT_SIZE 25.0f 
 #define FONT_SIZE2 35.0f
@@ -504,7 +505,7 @@ void game_update(void)
 
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
 	{
-		CP_Engine_Terminate();
+		CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
 	}
 
 }
