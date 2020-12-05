@@ -9,6 +9,7 @@
 #include "transitiontolvl2.h"
 #include "bosslvl.h"
 #include "youwin.h"
+#include "mainmenu.h"
 
 #define FONT_SIZE 25.0f 
 #define FONT_SIZE2 35.0f
@@ -104,6 +105,7 @@ void game4_init(void)
 	numlines = 1;
 	memset(userinput4, 0, MAXC * sizeof(char));
 	nextchar4 = 0;
+	lives = 1;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
 
@@ -271,7 +273,7 @@ void game4_update(void)
 	}
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
 	{
-		CP_Engine_Terminate();
+		CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
 	}
 
 }
