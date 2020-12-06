@@ -544,6 +544,10 @@ char* wordlist(int choice)
 	p[13].buffer = "MEDIA";
 	p[14].buffer = "FAKE NEWS";
 	p[15].buffer = "TROLLING";
+	p[16].buffer = "COMPUTER";
+	p[17].buffer = "MEME";
+	p[18].buffer = "BITCOIN";
+	p[19].buffer = "PROGRAMMING";
 
 
 	char* wordpicked = p[choice].buffer;

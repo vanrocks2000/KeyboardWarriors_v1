@@ -507,11 +507,6 @@ char* wordlist3(int choice)
 	p[11].buffer = "C@CHE";
 	p[12].buffer = "H@CK3RRR";
 	p[13].buffer = "*ANONYMOUS*";
-	p[14].buffer = "TROJ@N HORS3";
-	p[15].buffer = "CL1CKB@1T";
-	p[16].buffer = "!!!!!!";
-	p[17].buffer = "D@NGER";
-
 
 	char* wordpicked = p[choice].buffer;
 

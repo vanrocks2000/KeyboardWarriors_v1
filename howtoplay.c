@@ -126,12 +126,16 @@ void howtoplay_update(void)
 		CP_Font_DrawTextBox("Number of enemies: 1", 170, 450, 1000);
 		CP_Font_DrawTextBox("Level description: Boss, increase in speed if sentences entered are incorrect, enter a sentence correctly to reset speed", 170, 500, 1000);
 	}
-	if (abc == 4)
+
+	/*if (abc == 4)
 	{
 		CP_Graphics_DrawRect(70, 50, 1140, 600);
 		CP_Image gameplay = CP_Image_Load("./Assets/gameplay.png");
-		CP_Image_Draw(gameplay, 450, 400, 700, 700, 255);
-	}
+		CP_Image_Draw(gameplay, 550, 380, 810, 495, 255);
+		CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
+		CP_Settings_TextSize(FONT_SIZE1);
+		CP_Font_DrawTextBox("Enemies appear from right-hand side", 970, 200, 250);
+	}*/
 
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
 	{
@@ -139,7 +143,7 @@ void howtoplay_update(void)
 	}
 	if (CP_Input_KeyTriggered(KEY_RIGHT))
 	{
-		if (abc < 4)
+		if (abc < 3)
 		{
 			abc++;
 		}
