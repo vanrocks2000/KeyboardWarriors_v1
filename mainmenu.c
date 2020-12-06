@@ -5,6 +5,8 @@
 #include "howtoplay.h"
 #include "bosslvl.h"
 #include "transitiontolvl1.h"
+#include "credit.h"
+
 #define FONT_SIZE 100
 
 
@@ -129,6 +131,7 @@ void mainmenu_init(void)
 				if (CP_Input_MouseClicked())
 				{
 					//load credits page
+					CP_Engine_SetNextGameState(credit_init, credit_update, credit_exit);
 				}
 			}
 		}
