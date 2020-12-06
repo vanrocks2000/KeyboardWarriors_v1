@@ -50,7 +50,23 @@ void howtoplay_update(void)
 	{
 		CP_Graphics_DrawRect(70, 50, 1140, 600);
 		CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
+		CP_Settings_TextSize(FONT_SIZE2);
+		CP_Font_DrawText("Controls", 120, 100);
+		CP_Image arrowkeys = CP_Image_Load("./Assets/arrowkeys.png");
+		CP_Image backspace = CP_Image_Load("./Assets/backspace.png");
+		CP_Image enter = CP_Image_Load("./Assets/enter.png");
+		CP_Image keyboard = CP_Image_Load("./Assets/keyboard.png");
+		CP_Image_Draw(arrowkeys, 150, 250, 200, 180, 255);
+		CP_Image_Draw(backspace, 230, 450, 300, 230, 255);
+		CP_Image_Draw(enter, 770, 220, 300, 230, 255);
+		CP_Image_Draw(keyboard, 780, 480 , 300, 230, 255);
+		CP_Settings_TextSize(FONT_SIZE1);
+		CP_Font_DrawTextBox("Use UP and DOWN arrow keys to move player", 220, 220, 250);
+		CP_Font_DrawTextBox("Press ENTER to submit the word that was typed", 950, 200, 250);
+		CP_Font_DrawTextBox("Use BACKSPACE to delete characters typed wrongly", 380, 400, 250);
+		CP_Font_DrawTextBox("Type out the words given on your keyboard", 950, 450, 250);
 		CP_Settings_TextSize(FONT_SIZE3);
+		CP_Font_DrawTextBox("Press ESC anytime to return", 100, 620, 600);
 		CP_Font_DrawTextBox("Right arrow key >>>", 900, 620, 600);
 	}
 	if (abc == 1)
@@ -113,6 +129,8 @@ void howtoplay_update(void)
 	if (abc == 4)
 	{
 		CP_Graphics_DrawRect(70, 50, 1140, 600);
+		CP_Image gameplay = CP_Image_Load("./Assets/gameplay.png");
+		CP_Image_Draw(gameplay, 450, 400, 700, 700, 255);
 	}
 
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
