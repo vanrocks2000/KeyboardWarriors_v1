@@ -8,16 +8,18 @@
 #define FONT_SIZE1 33.0f
 #define FONT_SIZE3 25.0f
 
-int displayW = 1280;
-int displayH = 720;
+int displaywidth, displayheight;
 
 float timee;
 void credit_init(void)
 {
+	displayheight = 720;
+	displaywidth = 1280;
+	CP_System_SetWindowSize(displaywidth, displayheight);
 
 	CP_Font font1 = CP_Font_Load("./Assets/retro_computer.ttf");
 	CP_Font_Set(font1);
-
+	
 }
 
 void credit_update(void)
@@ -25,7 +27,7 @@ void credit_update(void)
 	
 	
 	CP_Image bg = CP_Image_Load("./Assets/Bg2.png");
-	CP_Image_Draw(bg, (float)displayW / 2, (float)displayH / 2, (float)displayW, (float)displayH, 125);
+	CP_Image_Draw(bg, (float)displaywidth / 2, (float)displayheight / 2, (float)displaywidth, (float)displayheight, 125);
 
 
 	
@@ -81,7 +83,7 @@ void credit_update(void)
         XIN LI   ANGELA KUGLER\n\
         MELVIN GONSALVEZ   MEIGHAN MCKELVEY\n", 220, 300, 850);
 		CP_Settings_TextSize(FONT_SIZE1);
-		CP_Font_DrawTextBox(">Press ESC to go back to main menu<", 200, 680, 1000);;
+		CP_Font_DrawTextBox(">Press ESC to go back to main menu<", 200, 680, 1000);
 
 
 
@@ -100,4 +102,5 @@ void credit_update(void)
 void credit_exit(void)
 {
 	timee = 0;
+	CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_LEFT, CP_TEXT_ALIGN_V_BASELINE);
 }

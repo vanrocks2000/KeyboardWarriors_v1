@@ -18,6 +18,7 @@ void transitiontolvl1_init(void)
 
 	displaywidth = 1280;
 	displayheight = 720;
+	CP_System_SetWindowSize(displaywidth, displayheight);
 
 
 
