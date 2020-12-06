@@ -5,6 +5,8 @@
 #include "howtoplay.h"
 #include "bosslvl.h"
 #include "transitiontolvl1.h"
+#include "credit.h"
+
 #define FONT_SIZE 100
 
 
@@ -32,30 +34,32 @@ void mainmenu_init(void)
 	else
 	{
 
-		struct Button a1 , a2, a3;
+		struct Button a1 , a2, a3, a4;
 
 		CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 2, (float)displayWidth, (float)displayHeight, 125);
 
 		//setting size and position of buttons
 		a1.width = 300;
 		a1.height = 150;
-		a1.x = (float)displayWidth / 2;
-		a1.y = (float)displayHeight / 2.5f;
+		a1.x = (float)displayWidth / 2.75f;
+		a1.y = (float)displayHeight / 2.3f;
 
 		a2.width = 300;
 		a2.height = 150;
-		a2.x = (float)displayWidth / 2;
-		a2.y = (float)displayHeight / 1.65f;
+		a2.x = (float)displayWidth / 1.5f;
+		a2.y = (float)displayHeight / 2.3f;
 
-		a3.width = 300;
+		a3.width = 350;
 		a3.height = 150;
-		a3.x = (float)displayWidth / 2;
-		a3.y = (float)displayHeight / 1.25f;
+		a3.x = (float)displayWidth / 2.75f;
+		a3.y = (float)displayHeight / 1.35f;
 
-		//draw the logo, play & exit buttons on the screen
+		a4.width = 300;
+		a4.height = 150;
+		a4.x = (float)displayWidth / 1.5f;
+		a4.y = (float)displayHeight / 1.35f;
 
-		//CP_Image logo = CP_Image_Load("./Assets/Logo.png");
-		//CP_Image_Draw(logo, a1.x, a1.y, a3.width, a3.height, 255);
+		//draw the play, howtoplay, credits & exit buttons on the screen
 
 		CP_Image play = CP_Image_Load("./Assets/Play.png");
 		CP_Image_Draw(play, a1.x , a1.y , a1.width, a1.height, 255);
@@ -63,41 +67,24 @@ void mainmenu_init(void)
 		CP_Image howtoplay = CP_Image_Load("./Assets/HowToPlay.png");
 		CP_Image_Draw(howtoplay, a2.x, a2.y, a1.width, a1.height, 255);
 
+		CP_Image credits = CP_Image_Load("./Assets/Credits.png");
+		CP_Image_Draw(credits, a3.x, a3.y, a3.width, a3.height, 255);
+
 		CP_Image exit = CP_Image_Load("./Assets/Exit.png");
-		CP_Image_Draw(exit, a3.x , a3.y , a1.width, a1.height, 255);
+		CP_Image_Draw(exit, a4.x , a4.y , a4.width, a4.height, 255);
 
-		/*
-		CP_Color rectColour = CP_Color_Create(215, 196, 130, 255);
-		CP_Settings_Fill(rectColour);
-		CP_Graphics_DrawRect(a1.x, a1.y, a1.width, a1.height);
-		CP_Graphics_DrawRect(a2.x, a2.y, a2.width, a2.height);
-
-		CP_Settings_TextSize(FONT_SIZE);
-		CP_Color fontColour = CP_Color_Create(0, 0, 0, 255);
-		CP_Settings_Fill(fontColour);
-		CP_Font_DrawText("Play", (float)displayWidth / 2.2f, (float)displayHeight / 3.5f);
-		CP_Font_DrawText("Exit", (float)displayWidth / 2.2f, (float)displayHeight / 2.2f);
-		*/
-
+		// get x & y position of mouse
 		float mouseX = CP_Input_GetMouseX(), mouseY = CP_Input_GetMouseY();
+
 		//if mouse hover over buttons, change color of buttons
-		if (mouseX > a1.x -150 && mouseX < (a1.x + a1.width))
+
+		//Play button
+		if (mouseX > a1.x -150 && mouseX < (a1.x + a1.width / 2))
 		{
 			if (mouseY > a1.y - 50 && mouseY < (a1.y - 50 + a1.height))
 			{
 				CP_Image play2 = CP_Image_Load("./Assets/Play2.png");
 				CP_Image_Draw(play2, a1.x , a1.y , a1.width, a1.height, 255);
-
-				/*
-				CP_Color rectColour2 = CP_Color_Create(124, 126, 40, 255);
-				CP_Settings_Fill(rectColour2);
-				CP_Graphics_DrawRect(a1.x, a1.y, a1.width, a1.height);
-				CP_Color fontColour2 = CP_Color_Create(255, 255, 255, 255);
-				CP_Settings_Fill(fontColour2);
-
-				CP_Settings_TextSize(FONT_SIZE);
-				CP_Font_DrawText("Play", (float)displayWidth / 2.2f, (float)displayHeight / 3.5f);
-				*/
 
 				//if mouseclicked on first button, start the game
 				if (CP_Input_MouseClicked())
@@ -107,18 +94,21 @@ void mainmenu_init(void)
 
 			}
 		}
-		//Add code for How to play button
+
+		//How to play button
 		if (CP_Input_KeyTriggered(KEY_SPACE))
 		{
 			CP_Engine_SetNextGameState(game4_init, game4_update, game4_exit);
 		}
-		if (mouseX > a1.x - 150 && mouseX < (a1.x + a1.width))
+
+		if (mouseX > a2.x - 150 && mouseX < (a2.x + a1.width / 2))
 		{
 			if (mouseY > a2.y - 50 && mouseY < (a2.y - 50 + a2.height))
 			{
 				CP_Image howtoplay2 = CP_Image_Load("./Assets/HowToPlay2.png");
-				CP_Image_Draw(howtoplay2, a2.x, a2.y, a1.width, a1.height, 255);
+				CP_Image_Draw(howtoplay2, a2.x, a2.y, a2.width, a2.height, 255);
 
+				//if mouseclicked on the second button, load how to play page
 				if (CP_Input_MouseClicked())
 				{
 					CP_Engine_SetNextGameState(howtoplay_init, howtoplay_update, howtoplay_exit);
@@ -126,25 +116,35 @@ void mainmenu_init(void)
 			}
 		}
 
-		if (mouseX > a2.x -150 && mouseX < (a2.x + a2.width))
+		//Credits button
+		
+		// if player presses space 
+
+		if (mouseX > a3.x - 150 && mouseX < (a3.x + a3.width / 2))
 		{
-			if (mouseY > a2.y + 35 && mouseY < (a2.y + 35 + a2.height))
+			if (mouseY > a3.y - 50 && mouseY < (a3.y - 50 +  a3.height))
+			{
+				CP_Image credits2 = CP_Image_Load("./Assets/Credits2.png");
+				CP_Image_Draw(credits2, a3.x, a3.y, a3.width, a3.height, 255);
+
+				//if mouseclicked on the second button, load credits page
+				if (CP_Input_MouseClicked())
+				{
+					//load credits page
+					CP_Engine_SetNextGameState(credit_init, credit_update, credit_exit);
+				}
+			}
+		}
+
+		//Exit button
+		if (mouseX > a4.x -150 && mouseX < (a4.x + a4.width / 2))
+		{
+			if (mouseY > a4.y - 50 && mouseY < (a4.y - 50 + a4.height))
 			{
 				CP_Image exit2 = CP_Image_Load("./Assets/Exit2.png");
-				CP_Image_Draw(exit2, a3.x , a3.y , a1.width, a1.height, 255);
+				CP_Image_Draw(exit2, a4.x , a4.y , a4.width, a4.height, 255);
 
-				/*
-				CP_Color rectColour2 = CP_Color_Create(124, 126, 40, 255);
-				CP_Settings_Fill(rectColour2);
-				CP_Graphics_DrawRect(a2.x, a2.y, a2.width, a2.height);
-				CP_Color fontColour2 = CP_Color_Create(255, 255, 255, 255);
-				CP_Settings_Fill(fontColour2);
-
-				CP_Settings_TextSize(FONT_SIZE);
-				CP_Font_DrawText("Exit", (float)displayWidth / 2.2f, (float)displayHeight / 2.2f);
-				*/
-
-				//if mouseclicked on the seocnd button, terminates game
+				//if mouseclicked on the second button, terminates game
 				if (CP_Input_MouseClicked())
 				{
 					CP_Engine_Terminate();
