@@ -105,7 +105,6 @@ void game4_init(void)
 	numlines = 1;
 	memset(userinput4, 0, MAXC * sizeof(char));
 	nextchar4 = 0;
-	lives = 1;
 	numofconsecutivecorrect = 0;
 	numofconsecutivewrong = 0;
 

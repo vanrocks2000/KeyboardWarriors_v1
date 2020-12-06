@@ -522,7 +522,7 @@ void game_exit(void)
 
 int RandomWord(void)
 {
-	x = CP_Random_RangeInt(0, 15);
+	x = CP_Random_RangeInt(0, 19);
 	return x;
 }
 

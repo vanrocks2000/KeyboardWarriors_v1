@@ -108,7 +108,6 @@ void game3_init(void)
 	playery = 10;
 	velx = -0.03f;
 	numkilled = 1;
-	lives = 5;
 	memset(userinput3, 0, MAXC * sizeof(char));
 	nextchar3 = 0;
 
@@ -487,7 +486,7 @@ void game3_exit(void)
 
 int RandomWord3(void)
 {
-	x = CP_Random_RangeInt(0, 13);
+	x = CP_Random_RangeInt(0, 17);
 	return x;
 }
 
