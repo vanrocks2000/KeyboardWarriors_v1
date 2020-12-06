@@ -3,40 +3,31 @@
 #include "mainmenu.h"
 
 
-#define FONT_SIZE 50
-#define FONT_SIZE2 40
-#define FONT_SIZE1 33
-#define FONT_SIZE3 25
+#define FONT_SIZE 50.0f
+#define FONT_SIZE2 40.0f
+#define FONT_SIZE1 33.0f
+#define FONT_SIZE3 25.0f
 
 int displayW = 1280;
 int displayH = 720;
-int abc;
-float x1, y1, x2, y2, x3, y3;
-float velocityy;
+
 float timee;
 void credit_init(void)
 {
 
-
-	//CP_System_SetWindowSize(displayWidth, displayHeight);
-	abc = 0;
-	x1 = 250;
-	y1 = 220;
-	x2 = 150;
-	y2 = 420;
-	x3 = 150;
-	y3 = 420;
-	velocityy = -1;
+	CP_Font font1 = CP_Font_Load("./Assets/retro_computer.ttf");
+	CP_Font_Set(font1);
 
 }
 
 void credit_update(void)
 {
 	
-	CP_Font font1 = CP_Font_Load("./Assets/retro_computer.ttf");
-	CP_Font_Set(font1);
+	
 	CP_Image bg = CP_Image_Load("./Assets/Bg2.png");
 	CP_Image_Draw(bg, (float)displayW / 2, (float)displayH / 2, (float)displayW, (float)displayH, 125);
+
+
 	
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 100));
 	CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
