@@ -288,7 +288,7 @@ void game4_exit(void)
 
 int RandomWord4(void)
 {
-	x = CP_Random_RangeInt(0, 9);
+	x = CP_Random_RangeInt(0, 12);
 	return x;
 }
 
@@ -304,12 +304,10 @@ char* wordlist4(int choice)
 	p[7].buffer = "ALWAYS MAKE SURE THAT YOU CREATE UNIQUE AND STRONG PASSWORDS";
 	p[8].buffer = "AVOID CLICKING ON SUSPICIOUS LINKS FROM UNTRUSTED SOURCES AND EMAILS";
 	p[9].buffer = "BE AWARE OF ANY UNAUTHORIZED USE OF YOUR PERSONAL INFORMATION";
-	/*p[10].buffer = "A";
-	p[11].buffer = "L";
-	p[12].buffer = "M";
-	p[13].buffer = "N";
-	p[14].buffer = "O";
-	p[15].buffer = "P";*/
+	p[10].buffer = "BE CAUTIOUS ABOUT WHO YOU ACCEPT AS A FRIEND ON SOCIAL MEDIA";
+	p[11].buffer = "CUSTOMIZE YOUR PRIVACY SETTINGS TO CONTROL WHO CAN SEE YOUR POSTS";
+	p[12].buffer = "BE CAREFUL WHEN INSTALLING THIRD PARTY APPLICATIONS";
+	
 
 	char* wordpicked = p[choice].buffer;
 

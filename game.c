@@ -535,7 +535,7 @@ char* wordlist(int choice)
 	p[4].buffer = "INTERNET";
 	p[5].buffer = "ONLINE";
 	p[6].buffer = "CHAT";
-	p[7].buffer = "SOCIAL MEDIA";
+	p[7].buffer = "SOCIAL";
 	p[8].buffer = "WEBSITE";
 	p[9].buffer = "SPAM";
 	p[10].buffer = "DATA";
