@@ -1,3 +1,8 @@
+/*
+	Coded by: ...
+	Code for animation : Hui Yang
+*/
+
 #include "cprocessing.h"
 #include <stdio.h>
 #include "game.h"
@@ -171,6 +176,7 @@ void game_update(void)
 	pstr2 = string2;
 	pstr3 = string3;
 
+	//animation for enemy1
 	if (current_frame == 0)
 	{
 		Drawenemy(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
@@ -522,7 +528,7 @@ void game_exit(void)
 
 int RandomWord(void)
 {
-	x = CP_Random_RangeInt(0, 15);
+	x = CP_Random_RangeInt(0, 19);
 	return x;
 }
 
@@ -535,7 +541,7 @@ char* wordlist(int choice)
 	p[4].buffer = "INTERNET";
 	p[5].buffer = "ONLINE";
 	p[6].buffer = "CHAT";
-	p[7].buffer = "SOCIAL MEDIA";
+	p[7].buffer = "SOCIAL";
 	p[8].buffer = "WEBSITE";
 	p[9].buffer = "SPAM";
 	p[10].buffer = "DATA";

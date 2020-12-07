@@ -1,3 +1,7 @@
+/*
+	Coded by: ... & Hui Yang
+*/
+
 #pragma once
 void Drawenemy(char* ptr, float eposx, float eposy, float width, float height);
 void Drawenemy1(char* ptr, float eposx, float eposy, float width, float height);

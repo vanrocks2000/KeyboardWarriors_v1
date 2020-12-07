@@ -109,6 +109,9 @@ void howtoplay_update(void)
 		CP_Settings_TextSize(FONT_SIZE1);
 		CP_Font_DrawTextBox("Number of enemies: 25", 170, 450, 1000);
 		CP_Font_DrawTextBox("Level description: Faster enemies, no increase in speed if mistakes are made", 170, 500, 1000);
+		CP_Settings_TextSize(FONT_SIZE3);
+		CP_Font_DrawTextBox("<<< Back", 100, 620, 600);
+		CP_Font_DrawTextBox("Next >>>", 1050, 620, 600);
 	}
 	if (abc == 3)
 	{
@@ -125,6 +128,9 @@ void howtoplay_update(void)
 		CP_Settings_TextSize(FONT_SIZE1);
 		CP_Font_DrawTextBox("Number of enemies: 1", 170, 450, 1000);
 		CP_Font_DrawTextBox("Level description: Boss, increase in speed if sentences entered are incorrect, enter a sentence correctly to reset speed", 170, 500, 1000);
+		CP_Settings_TextSize(FONT_SIZE3);
+		CP_Font_DrawTextBox("<<< Back", 100, 620, 600);
+		CP_Font_DrawTextBox("Next >>>", 1050, 620, 600);
 	}
 
 	/*if (abc == 4)
