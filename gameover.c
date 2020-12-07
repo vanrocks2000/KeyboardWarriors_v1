@@ -46,16 +46,16 @@ void gameover_init(void)
 
 	CP_Color rectColour = CP_Color_Create(215, 196, 130, 255);
 	CP_Settings_Fill(rectColour);
-	//CP_Graphics_DrawRect(b1.x, b1.y, b1.width, b1.height);
-	//CP_Graphics_DrawRect(b2.x, b2.y, b2.width, b2.height);
-	//CP_Graphics_DrawRect(b3.x, b3.y, b3.width, b3.height);
 
+	//draw main menu icon
 	CP_Image mainmenu = CP_Image_Load("./Assets/MainMenu.png");
 	CP_Image_Draw(mainmenu, b1.x + 200, b1.y + 70, b1.width, b1.height, 255);
 
+	//draw replay icon
 	CP_Image replay = CP_Image_Load("./Assets/Replay.png");
 	CP_Image_Draw(replay, b1.x + 200, b1.y + 270, b1.width, b1.height, 255);
 
+	//draw exit icon
 	CP_Image exit = CP_Image_Load("./Assets/Exit.png");
 	CP_Image_Draw(exit, b1.x + 200, b1.y + 470, b1.width, b1.height, 255);
 
@@ -67,23 +67,14 @@ void gameover_init(void)
 	CP_Font_DrawText("GAME OVER:", 50, 100);
 
 	CP_Settings_TextSize(FONT_SIZE);
-	//CP_Font_DrawText("Main Menu", 540, 125);
-	//CP_Font_DrawText("Replay", 540, 325);
-	//CP_Font_DrawText("Exit Game", 540, 525);
-
-	
 
 	totaltimesurvived = GetFinalTime();
-	//_itoa_s((int)totaltimesurvived, finaltimebuffer, TIME, 10);
-	//CP_Font_DrawText(finaltimebuffer, 650, 300);
-	//CP_Font_DrawText("Seconds Survived:", 50, 300);
+	
 	snprintf(finaltimebuffer, TIME, "Time Survived : %d secs", (int)totaltimesurvived);
 	CP_Font_DrawText(finaltimebuffer, 50, 300);
 
 	totalscore = GetFinalScore();
-	//_itoa_s((int)totalscore, finalscorebuffer, SCORE, 10);
-	//CP_Font_DrawText(finalscorebuffer, 650, 500);
-	//CP_Font_DrawText("Final Score:", 50, 500);
+	
 	snprintf(finalscorebuffer, SCORE, "Final Score : %d", totalscore);
 	CP_Font_DrawText(finalscorebuffer, 50, 500);
 
@@ -107,17 +98,6 @@ void gameover_update(void)
 			CP_Image mainmenu2 = CP_Image_Load("./Assets/MainMenu2.png");
 			CP_Image_Draw(mainmenu2, b1.x + 200, b1.y + 70, b1.width, b1.height, 255);
 
-			/*
-			CP_Color rectColour = CP_Color_Create(124, 126, 40, 255);
-			CP_Settings_Fill(rectColour);
-			CP_Graphics_DrawRect(b1.x, b1.y, b1.width, b1.height);
-			CP_Color fontColour = CP_Color_Create(0, 0, 0, 255);
-			CP_Settings_Fill(fontColour);
-
-			CP_Settings_TextSize(FONT_SIZE);
-			CP_Font_DrawText("Main Menu", 540, 125);
-			*/
-
 			if (CP_Input_MouseClicked())
 			{
 				CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
@@ -132,17 +112,6 @@ void gameover_update(void)
 			CP_Image replay2 = CP_Image_Load("./Assets/Replay2.png");
 			CP_Image_Draw(replay2, b1.x + 200, b1.y + 270, b1.width, b1.height, 255);
 
-			/*
-			CP_Color rectColour = CP_Color_Create(124, 126, 40, 255);
-			CP_Settings_Fill(rectColour);
-			CP_Graphics_DrawRect(b2.x, b2.y, b2.width, b2.height);
-			CP_Color fontColour = CP_Color_Create(0, 0, 0, 255);
-			CP_Settings_Fill(fontColour);
-
-			CP_Settings_TextSize(FONT_SIZE);
-			CP_Font_DrawText("Replay", 540, 325);
-			*/
-
 			if (CP_Input_MouseClicked())
 			{
 				CP_Engine_SetNextGameState(game_init, game_update, game_exit);
@@ -156,17 +125,6 @@ void gameover_update(void)
 		{
 			CP_Image exit2 = CP_Image_Load("./Assets/Exit2.png");
 			CP_Image_Draw(exit2, b1.x + 200, b1.y + 470, b1.width, b1.height, 255);
-
-			/*
-			CP_Color rectColour = CP_Color_Create(124, 126, 40, 255);
-			CP_Settings_Fill(rectColour);
-			CP_Graphics_DrawRect(b3.x, b3.y, b3.width, b3.height);
-			CP_Color fontColour = CP_Color_Create(0, 0, 0, 255);
-			CP_Settings_Fill(fontColour);
-
-			CP_Settings_TextSize(FONT_SIZE);
-			CP_Font_DrawText("Exit Game", 540, 525);
-			*/
 
 			if (CP_Input_MouseClicked())
 			{

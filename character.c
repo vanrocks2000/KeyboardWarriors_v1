@@ -1,3 +1,7 @@
+/*
+	Coded by: ... & Hui Yang 
+*/
+
 #include "cprocessing.h"
 #include <stdio.h>
 #include "character.h"

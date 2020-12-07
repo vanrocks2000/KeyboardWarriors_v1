@@ -1,3 +1,8 @@
+/*
+	Coded by: ...
+	Code for animation : Hui Yang
+*/
+
 #include "cprocessing.h"
 #include <stdio.h>
 #include "game.h"
@@ -171,6 +176,7 @@ void game_update(void)
 	pstr2 = string2;
 	pstr3 = string3;
 
+	//animation for enemy1
 	if (current_frame == 0)
 	{
 		Drawenemy(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
