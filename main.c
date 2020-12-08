@@ -18,7 +18,9 @@
 
 int main(void)
 {
+	
 	CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
+	CP_System_SetWindowTitle("KEYBOARD WARRIORS");
 	CP_Engine_Run();
 	return 0;
 }

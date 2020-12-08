@@ -28,7 +28,7 @@
 
 void mainmenu_init(void)
 {
-
+	CP_System_SetWindowTitle("KEYBOARD WARRIORS");
 
 	int displayWidth = 1280;
 	int displayHeight = 720;
@@ -111,10 +111,6 @@ void mainmenu_init(void)
 		}
 
 		//How to play button
-		if (CP_Input_KeyTriggered(KEY_SPACE))
-		{
-			CP_Engine_SetNextGameState(game4_init, game4_update, game4_exit);
-		}
 
 		if (mouseX > a2.x - 150 && mouseX < (a2.x + a1.width / 2))
 		{

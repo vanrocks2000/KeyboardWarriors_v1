@@ -63,7 +63,7 @@ int nboss;
 
 int nextchar4 = 0;
 int numofcorrect4 = 0;
-int x, y1, y2, y3, b1;
+int x, y1, y2, y3, g1;
 char* wordchosen;
 
 float enemyx1, enemyy1;
@@ -104,7 +104,7 @@ void game4_init(void)
 	white = CP_Color_Create(255, 255, 255, 255);
 
 	//set random word
-	b1 = RandomWord4();
+	g1 = RandomWord4();
 	
 	//set coordinates of enemy/player
 	enemyx1 = 28;
@@ -152,9 +152,9 @@ void game4_update(void)
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 
 	//use randomized value to obtain a sentence from the list, counts the length and store it in a string
-	wordchosen = wordlist4(b1);
+	wordchosen = wordlist4(g1);
 
-	nboss = numofcharacters4(b1);
+	nboss = numofcharacters4(g1);
 	
 	for (int test = 0; test < nboss; test++)
 	{
@@ -202,7 +202,7 @@ void game4_update(void)
 			memset(string1, 0, MAXC * sizeof(char));
 			enemyx1 = 28;
 			enemyy1 = 10;
-			b1 = RandomWord4();
+			g1 = RandomWord4();
 
 		}
 	}
@@ -239,7 +239,7 @@ void game4_update(void)
 					nextchar4 = 0;
 					enemyx1 = enemyx1 + 3;
 					enemyy1 = 10;
-					b1 = RandomWord4();
+					g1 = RandomWord4();
 					numofconsecutivecorrect++;
 					numofconsecutivewrong = 0;
 				}
