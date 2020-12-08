@@ -4,7 +4,7 @@
 // email:	yuting.lee@digipen.edu
 //
 // brief:	code for animation done by Hau Hui Yang
-//          code for           done by Vanessa Luo
+//          code for background and initial drawing of character/enemies done by Vanessa Luo
 //          code for the rest of the code done by Lee Yu Ting
 //
 // documentation link:

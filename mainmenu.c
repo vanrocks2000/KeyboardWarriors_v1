@@ -1,9 +1,10 @@
 //---------------------------------------------------------
 // file:	mainmenu.c
-// author:	huiyang?van?
-// email:	?
+// author:	Vanessa Luo
+// email:	vanessa.l@digipen.edu
 //
-// brief:	huiyang? van?
+// brief:	Background/Buttons and Art done by HuiYang
+//			Initial Base code of buttons done by Vanessa
 //
 // documentation link:
 // https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
