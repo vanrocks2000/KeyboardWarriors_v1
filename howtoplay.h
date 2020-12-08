@@ -1,7 +1,7 @@
 //---------------------------------------------------------
 // file:	howtoplay.h
 // author:	Vanessa Luo
-// email:	yuting.lee@digipen.edu
+// email:	vanessa.l@digipen.edu
 //
 // brief:	code done by Vanessa Luo
 //
