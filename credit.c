@@ -63,7 +63,7 @@ void credit_update(void)
         \"Keyboard Warriors\"", 150, 300, 1000);
 		CP_Settings_TextSize(FONT_SIZE1);
 		CP_Font_DrawTextBox("WWW.DIGIPEN.EDU \n\
-        COPYRIGHT 2020 BY DIGIPEN CORP, USA. ALL RIGHTS RESERVED.", 150, 520, 1000);
+        All content copyright 2020 DigiPen Institute of Technology Singapore, all rights reserved.", 150, 520, 1000);
     
 	}
 	
