@@ -1,7 +1,18 @@
-/*
-	Coded by: ...
-	Code for animation : Hui Yang
-*/
+//---------------------------------------------------------
+// file:	game.c
+// author:	Lee Yu Ting
+// email:	yuting.lee@digipen.edu
+//
+// brief:	code for animation done by Hau Hui Yang
+//          code for           done by Vanessa Luo
+//          code for the rest of the code done by Lee Yu Ting
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright © 2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
+
 
 #include "cprocessing.h"
 #include <stdio.h>
@@ -95,10 +106,8 @@ void game_init(void)
 	gridheight = 40;
 
 	//settings for font, colour
-	
 	black = CP_Color_Create(0, 0, 0, 255);
 	white = CP_Color_Create(255, 255, 255, 255);
-	
 	
 	//set random word
 	x1 = RandomWord();
@@ -115,6 +124,8 @@ void game_init(void)
 	playerx = 2;
 	playery = 10;
 	velx = -0.07f;
+	
+	//set initial num of lives, score, time, clear user input, sets num of consecutively wrong and correct inputs as 0;
 	lives = 3;
 	numkilled = 15;
 	numofconsecutivecorrect = 0;
@@ -132,6 +143,7 @@ void game_update(void)
 	//set time
 	time += CP_System_GetDt();
 	finaltime = time;
+	
 	finalscore = score;
 
 
@@ -141,6 +153,7 @@ void game_update(void)
 
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 
+	//display time, score, lives and num of enemies left
 	CP_Settings_Fill(white);
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
@@ -148,9 +161,11 @@ void game_update(void)
 	DisplayNumberOfEnemiesLeftToKill(numkilled, gridwidth, gridheight);
 	CP_Settings_Fill(black);
 	CP_Settings_TextSize(FONT_SIZE2);
+	
+	//draw player
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 	
-	//use randomized value to obtain a word from the wordlist and store it in strings
+	//use randomized value to obtain a word from the wordlist, counts the length of the words and store them in strings
 	wordchosen = wordlist(x1);
 	wordchosen2 = wordlist(x2);
 	wordchosen3 = wordlist(x3);
@@ -176,7 +191,7 @@ void game_update(void)
 	pstr2 = string2;
 	pstr3 = string3;
 
-	//animation for enemy1
+	//animation for enemy1 and displays word above enemy
 	if (current_frame == 0)
 	{
 		Drawenemy(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
@@ -245,20 +260,22 @@ void game_update(void)
 	enemyx2 += velx;
 	enemyx3 += velx;
 	
+	//convert string of words to array of int
 	ConvertWordToInt();
 	
 	Keyinput();
 	//displays words typed on screen
 	CP_Font_DrawText(ui, 550, 120);
 
+	//player to move up and down
 	PlayerMovement();
 	
+	//goes to the next game state when num of enemies left to kill is 0
 	if (numkilled == 0)
 	{
 		memset(string1, 0, 20 * sizeof(char));
 		memset(string2, 0, 20 * sizeof(char));
 		memset(string3, 0, 20 * sizeof(char));
-		//CP_Engine_SetNextGameState(transitiontolvl2_init, transitiontolvl2_update, transitiontolvl2_exit);
 		CP_Engine_SetNextGameState(transitiontolvl2_init, transitiontolvl2_update, transitiontolvl2_exit);
 	}
 
@@ -267,6 +284,7 @@ void game_update(void)
 	{
 		lives -= 1;
 		numofconsecutivewrong++;
+		//if num of lives left is 0 changes gamestate to gameover
 		if (lives == 0)
 		{
 			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
@@ -278,6 +296,7 @@ void game_update(void)
 			memset(string2, 0, 20 * sizeof(char));
 			memset(string3, 0, 20 * sizeof(char));
 		}
+		//if lives left >0, spawn new enemy with a new word at starting position
 		else
 		{
 			numofcorrect = 0;
@@ -344,11 +363,12 @@ void game_update(void)
 	//enter to check word typed = random word
 	if (CP_Input_KeyTriggered(KEY_ENTER))
 	{
-		//check if they are the same
+		//counts length of input
 		int lenofinput = numofcharactersinput();
 		
 		if (playery == 5)
 		{
+			//check if ascii value of each character in word and input is the same
 			for (int check = 0; check < lenofinput; check++)
 			{
 				if (intvalue1[check] == (int)userinput[check])
@@ -359,6 +379,7 @@ void game_update(void)
 			}
 			if (n1 == lenofinput)
 			{
+				//if input is same as word, increase score, decrease num of enemies left to kill, spawn new enemy with new word
 				if (numofcorrect == n1)
 				{
 					numofcorrect = 0;
@@ -373,6 +394,7 @@ void game_update(void)
 					numofconsecutivewrong = 0;
 					x1 = RandomWord();
 				}
+				//if length of input == word length but incorrect, clears input
 				else if (numofcorrect != n1)
 				{
 					numofcorrect = 0;
@@ -382,6 +404,7 @@ void game_update(void)
 				}
 			}
 
+			//if length of input != length of word, clears input
 			else
 			{
 				numofcorrect = 0;
@@ -482,6 +505,7 @@ void game_update(void)
 		}	
 	}
 
+	//increases enemy speed when wrong word is entered/enemy reaches player two times in a row
 	if (numofconsecutivewrong > 0)
 	{
 		numofconsecutivecorrect = 0;
@@ -504,11 +528,8 @@ void game_update(void)
 			numofconsecutivecorrect = 0;
 		}
 	}
-	/*_itoa_s(numofconsecutivecorrect, wordbuf, word, 10);
-	CP_Font_DrawText(wordbuf, (float)5 * gridwidth, (float)2 * gridheight);
-	_itoa_s(numofconsecutivewrong, wordbuf, word, 10);
-	CP_Font_DrawText(wordbuf, (float)6 * gridwidth, (float)2 * gridheight);*/
 
+	//esc key to go back to main menu
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
 	{
 		CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
@@ -526,12 +547,14 @@ void game_exit(void)
 	memset(string3, 0, 20 * sizeof(char));
 }
 
+//get a random int from 0 to 19
 int RandomWord(void)
 {
 	x = CP_Random_RangeInt(0, 19);
 	return x;
 }
 
+//list of words, returns a pointer to first char of chosen word
 char* wordlist(int choice)
 {
 	p[0].buffer = "TECHNOLOGY";
@@ -561,7 +584,7 @@ char* wordlist(int choice)
 	return wordpicked;
 }
 
-
+//counts the length of the word
 int numofcharacters(int l)
 {
 	p[l].numc = (int)strlen(p[l].buffer);
@@ -570,6 +593,8 @@ int numofcharacters(int l)
 
 
 }
+
+//counts the length of user input
 int numofcharactersinput(void)
 {
 	int lengthofinput = (int)strlen(userinput);
@@ -579,6 +604,7 @@ int numofcharactersinput(void)
 
 }
 
+//converts an array of char to array of int
 void ConvertWordToInt(void)
 {
 	for (i = 0; i < n1; i++)
@@ -604,6 +630,7 @@ void ConvertWordToInt(void)
 
 }
 
+//players to move between the rows using up and down arrow keys
 void PlayerMovement(void)
 {
 	if (playery >= 10 && playery <= 15)
@@ -621,6 +648,8 @@ void PlayerMovement(void)
 		}
 	}
 }
+
+//stores user input in an array
 void Keyinput(void)
 {
 	//whatever that is typed first is stored in 0 position in array, subsequent char is stored in nth position +1
@@ -775,6 +804,7 @@ void Keyinput(void)
 	
 }
 
+//displays time
 void DisplayTime(float timeelapsed, float width, float height)
 {
 	CP_Settings_TextSize(FONT_SIZE);
@@ -784,11 +814,13 @@ void DisplayTime(float timeelapsed, float width, float height)
 
 }
 
+//returns final time
 float GetFinalTime(void)
 {
 	return finaltime;
 }
 
+//displays num of lives
 void DisplayLives(int livesleft, float width, float height)
 {
 	CP_Settings_TextSize(FONT_SIZE);
@@ -798,6 +830,7 @@ void DisplayLives(int livesleft, float width, float height)
 
 }
 
+// displays score
 void DisplayScore(int currentscore, float width, float height)
 {
 	CP_Settings_TextSize(FONT_SIZE);
@@ -807,11 +840,13 @@ void DisplayScore(int currentscore, float width, float height)
 
 }
 
+//returns final score
 int GetFinalScore(void)
 {
 	return finalscore;
 }
 
+//displays num of enemies left to kill
 void DisplayNumberOfEnemiesLeftToKill(int numberkilled, float width, float height)
 {
 	CP_Settings_TextSize(FONT_SIZE);
@@ -820,73 +855,3 @@ void DisplayNumberOfEnemiesLeftToKill(int numberkilled, float width, float heigh
 	CP_Font_DrawText("Enemies To Kill:", (float)20.5 * width, (float)1 * height);
 
 }
-
-
-
-
-
-// use CP_Engine_SetNextGameState to specify this function as the initialization function
-// this function will be called once at the beginning of the program
-//float characX = 100;
-//float characY = 100;
-
-/*void game_init(void)
-{
-
-
-	CP_Settings_Background(CP_Color_Create(135, 245, 157, 255));
-}
-
-// use CP_Engine_SetNextGameState to specify this function as the update function
-// this function will be called repeatedly every frame
-void game_update(void)
-{
-	// char colour[6] = {'H', 'E', 'L', 'L', 'O' };
-
-
-
-	CP_Settings_TextSize(FONT_SIZE);
-	//for (int i = 0; i < 5; i++)
-	//{
-	//	if (CP_Input_KeyTriggered(KEY_H) == colour[i] )
-	//	{
-	//		//CP_Font_DrawText(colour[i], characX, characY);
-	//		CP_Font_DrawText("Correct", characX, characY);
-	//	}
-	//	else
-	//	{
-	//		CP_Font_DrawText("Wrong", characX, characY);
-	//	}
-
-	//
-	//}
-
-	//if (CP_Input_KeyTriggered() == 72 )
-	//{
-	//	//CP_Font_DrawText(colour[i], characX, characY);
-	//	CP_Font_DrawText("Correct", characX, characY);
-	//}
-	//else
-	//{
-	//	CP_Font_DrawText("Wrong", characX, characY);
-	//}
-
-
-
-	if (CP_Input_KeyTriggered(KEY_ESCAPE))
-	{
-		CP_Engine_Terminate();
-	}
-
-}
-
-// use CP_Engine_SetNextGameState to specify this function as the exit function
-// this function will be called once just before leaving the current gamestate
-void game_exit(void)
-{
-
-}
-
-// main() the starting point for the program
-// CP_Engine_SetNextGameState() tells CProcessing which functions to use for init, update and exit
-// CP_Engine_Run() is the core function that starts the simulation*/

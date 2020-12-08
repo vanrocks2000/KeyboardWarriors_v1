@@ -1,6 +1,17 @@
-/*
-	Coded by: ... & Hui Yang
-*/
+//---------------------------------------------------------
+// file:	character.h
+// author:	Hau Hui Yang
+// email:	huiyang.hau@digipen.edu
+//
+// brief:	code for drawboss done by Lee Yu Ting
+//          the rest by Hau Hui Yang
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright © 2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
+
 
 #pragma once
 void Drawenemy(char* ptr, float eposx, float eposy, float width, float height);

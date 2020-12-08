@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	bosslvl.c
+// author:	Lee Yu Ting
+// email:	yuting.lee@digipen.edu
+//
+// brief:	image of boss done and added in by Hau Hui Yang
+//          rest of the code by Lee Yu Ting
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright © 2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "cprocessing.h"
 #include <stdio.h>
 #include "game.h"
@@ -40,7 +53,6 @@ char linesbuffer[KILLS];
 int numofconsecutivewrong;
 int numofconsecutivecorrect;
 
-
 CP_Color fontColour;
 
 int y, i;
@@ -54,8 +66,6 @@ int numofcorrect4 = 0;
 int x, y1, y2, y3, b1;
 char* wordchosen;
 
-
-
 float enemyx1, enemyy1;
 float gridwidth, gridheight;
 float velx;
@@ -68,6 +78,7 @@ int numofchar;
 int intvalue1[MAXC];
 float playerx, playery;
 CP_Color black, white;
+
 struct WORDS
 {
 	char* buffer;
@@ -95,13 +106,14 @@ void game4_init(void)
 	//set random word
 	b1 = RandomWord4();
 	
-
 	//set coordinates of enemy/player
 	enemyx1 = 28;
 	enemyy1 = 10;
 	playerx = 2;
 	playery = 10;
 	velx = -0.01f;
+
+	//set initial num of lines to type, clear user input and num of consecutively wrong and correct inputs as 0
 	numlines = 7;
 	memset(userinput4, 0, MAXC * sizeof(char));
 	nextchar4 = 0;
@@ -127,6 +139,7 @@ void game4_update(void)
 
 	CP_Settings_Background(CP_Color_Create(255, 255, 255, 255));
 
+	//displays time, score, num of lives and num of lines left
 	CP_Settings_Fill(white);
 	DisplayTime(time, gridwidth, gridheight);
 	DisplayScore(score, gridwidth, gridheight);
@@ -134,34 +147,34 @@ void game4_update(void)
 	DisplayNumOfLines(numlines, gridwidth, gridheight);
 	
 	CP_Settings_Fill(black);
+	
+	//draws player
 	Drawplayer(playerx, playery, gridwidth, gridheight);
 
-	//use randomized value to obtain a word from the wordlist and store it in strings
+	//use randomized value to obtain a sentence from the list, counts the length and store it in a string
 	wordchosen = wordlist4(b1);
 
 	nboss = numofcharacters4(b1);
 	
-
 	for (int test = 0; test < nboss; test++)
 	{
 		string1[test] = *(wordchosen + test);
 	}
-	
-
 	pstr1 = string1;
+
+	//draws boss and displays sentence above boss
 	CP_Settings_TextSize(FONT_SIZE2);
 	Drawboss(pstr1, enemyx1, enemyy1, gridwidth, gridheight);
-
 	enemyx1 += velx;
 
-
+	//convert sentence in a string to array of int
 	ConvertWordToInt4();
 
 	Keyinput4();
 	//displays words typed on screen
 	CP_Font_DrawTextBox(ui4, 0, 120, 1280);
 
-
+	//if lines left to type is 0, changes game state
 	if (numlines == 0)
 	{
 		CP_Engine_SetNextGameState(youwin_init, youwin_update, youwin_exit);
@@ -171,6 +184,7 @@ void game4_update(void)
 	if ((int)enemyx1 == (int)playerx)
 	{
 		lives--;
+		//if num of lives left is 0 changes gamestate to gameover
 		if (lives == 0)
 		{
 			CP_Engine_SetNextGameState(gameover_init, gameover_update, gameover_exit);
@@ -181,6 +195,7 @@ void game4_update(void)
 			memset(string1, 0, MAXC * sizeof(char));
 			
 		}
+		//if lives left >0, spawn new enemy with a new word at starting position
 		else
 		{
 			numofcorrect4 = 0;
@@ -196,13 +211,13 @@ void game4_update(void)
 	//enter to check word typed = random word
 	if (CP_Input_KeyTriggered(KEY_ENTER))
 	{
-		//check if they are the same
+		//counts length of input
 		int lenofinput = numofcharactersinput4();
 
 
 		if (playery == 10)
 		{
-
+			//check if ascii value of each character in the sentence and input is the same
 			for (int check = 0; check < lenofinput; check++)
 			{
 				if (intvalue1[check] == (int)userinput4[check])
@@ -213,6 +228,7 @@ void game4_update(void)
 			}
 			if (nboss == lenofinput)
 			{
+				//if input is same as sentence, increase score, decrease num of lines left to type, spawn new enemy with new sentence
 				if (numofcorrect4 == nboss)
 				{
 					numofcorrect4 = 0;
@@ -227,6 +243,7 @@ void game4_update(void)
 					numofconsecutivecorrect++;
 					numofconsecutivewrong = 0;
 				}
+				////if length of input == sentence length but incorrect, clears input
 				else if (numofcorrect4 != nboss)
 				{
 					numofcorrect4 = 0;
@@ -235,7 +252,7 @@ void game4_update(void)
 					numofconsecutivewrong++;
 				}
 			}
-
+			//if length of input != length of sentence, clears input
 			else
 			{
 				numofcorrect4 = 0;
@@ -248,6 +265,7 @@ void game4_update(void)
 		
 		
 	}
+	//increases enemy speed when sentence is entered is incorrect/enemy reaches player two times in a row
 	if (numofconsecutivewrong > 0)
 	{
 		numofconsecutivecorrect = 0;
@@ -270,6 +288,8 @@ void game4_update(void)
 			numofconsecutivecorrect = 0;
 		}
 	}
+
+	//esc key to go back to main menu
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
 	{
 		CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
@@ -285,12 +305,14 @@ void game4_exit(void)
 	memset(string1, 0, MAXC * sizeof(char));
 }
 
+//get a random int from 0 to 19
 int RandomWord4(void)
 {
 	x = CP_Random_RangeInt(0, 12);
 	return x;
 }
 
+//list of sentences, returns a pointer to first char of chosen sentence
 char* wordlist4(int choice)
 {
 	p[0].buffer = "INSTALL ANTIVIRUS AND FIREWALL SOFTWARES AND UPDATE THEM REGULARLY";
@@ -313,6 +335,7 @@ char* wordlist4(int choice)
 	return wordpicked;
 }
 
+//counts the length of the sentence
 int numofcharacters4(int l)
 {
 	p[l].numc = (int)strlen(p[l].buffer);
@@ -321,6 +344,7 @@ int numofcharacters4(int l)
 
 
 }
+//counts the length of user input
 int numofcharactersinput4(void)
 {
 	int lengthofinput = (int)strlen(userinput4);
@@ -330,6 +354,7 @@ int numofcharactersinput4(void)
 
 }
 
+//converts an array of char to array of int
 void ConvertWordToInt4(void)
 {
 	for (i = 0; i < nboss; i++)
@@ -339,10 +364,9 @@ void ConvertWordToInt4(void)
 
 	}
 
-
 }
 
-
+//stores user input in an array
 void Keyinput4(void)
 {
 	//whatever that is typed first is stored in 0 position in array, subsequent char is stored in nth position +1
@@ -360,11 +384,7 @@ void Keyinput4(void)
 		*(ui4 + nextchar4) = ',';
 		nextchar4++;
 	}
-	if (CP_Input_KeyTriggered(KEY_PERIOD))
-	{
-		*(ui4 + nextchar4) = '.';
-		nextchar4++;
-	}
+	
 	if (CP_Input_KeyTriggered(KEY_SPACE))
 	{
 		*(ui4 + nextchar4) = ' ';
@@ -502,10 +522,9 @@ void Keyinput4(void)
 		nextchar4++;
 	}
 
-
-
 }
 
+//displays num of lines left to type
 void DisplayNumOfLines(int numberlines, float width, float height)
 {
 	_itoa_s(numlines, linesbuffer, LINES, 10);

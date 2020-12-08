@@ -1,11 +1,23 @@
-/*
-	Coded by: ... & Hui Yang 
-*/
+//---------------------------------------------------------
+// file:	character.c
+// author:	Hau Hui Yang
+// email:	huiyang.hau@digipen.edu
+//
+// brief:	code for drawing of text done by Lee Yu Ting
+//          the rest by Hau Hui Yang
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright © 2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
+
 
 #include "cprocessing.h"
 #include <stdio.h>
 #include "character.h"
 
+//displays words above enemies, loads image and draws enemies for different frames
 void Drawenemy(char* ptr,float eposx, float eposy, float width, float height)
 {
 	CP_Font_DrawText(ptr, (eposx - 1) * width, (eposy - 1) * height);
@@ -196,9 +208,7 @@ void Drawplayer(float pposx, float pposy, float width, float height)
 
 void Drawboss(char* ptr, float eposx, float eposy, float width, float height)
 {
-	//CP_Font_DrawTextB(ptr, (eposx-10) * width, (eposy - 1) * height);
 	CP_Font_DrawTextBox(ptr, (eposx-3) * width, (eposy - 5.5f) * height, 300);
-    //CP_Graphics_DrawRect(eposx * width, (eposy-1) * height, 3*width, 5*height);
 	CP_Image boss = CP_Image_Load("./Assets/Boss.png");
 	CP_Image_Draw(boss, eposx * width, (eposy + 1.5f) * height, 3 * width, 5 * height, 255);
 }

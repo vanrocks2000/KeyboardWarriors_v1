@@ -1,6 +1,16 @@
-/*
-	Coded by: ... & Hui Yang 
-*/
+//---------------------------------------------------------
+// file:	mainmenu.c
+// author:	huiyang?van?
+// email:	?
+//
+// brief:	huiyang? van?
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright © 2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
+
 
 #include "cprocessing.h"
 #include <stdio.h>

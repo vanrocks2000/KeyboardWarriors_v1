@@ -1,9 +1,19 @@
+//---------------------------------------------------------
+// file:	game.h
+// author:	Lee Yu Ting
+// email:	yuting.lee@digipen.edu
+//
+// brief:	code done by Lee Yu Ting
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright © 2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #pragma once
 
 void game_init(void);
-
 void game_update(void);
-
 void game_exit(void);
 int RandomWord(void);
 char* wordlist(int x);

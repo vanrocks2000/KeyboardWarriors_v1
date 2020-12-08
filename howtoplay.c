@@ -1,3 +1,16 @@
+//---------------------------------------------------------
+// file:	howtoplay.c
+// author:	Lee Yu Ting
+// email:	yuting.lee@digipen.edu
+//
+// brief:	first page of how to play done by Vanessa Luo
+//          the rest of how to play done by Lee Yu Ting
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright © 2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
 #include "cprocessing.h"
 #include <stdio.h>
 #include "mainmenu.h"
@@ -13,39 +26,28 @@ int abc;
 
 void howtoplay_init(void)
 {
-
-
+	//sets displaty width and height
 	CP_System_SetWindowSize(displayWidth, displayHeight);
+	//set the starting page to be the first page
 	abc = 0;
 
 }
 
 void howtoplay_update(void)
 {
+	//serts font type
 	CP_Font font1 = CP_Font_Load("./Assets/retro_computer.ttf");
 	CP_Font_Set(font1);
+	//loads and sets the background image
 	CP_Image bg = CP_Image_Load("./Assets/bg.png");
 	CP_Image_Draw(bg, (float)displayWidth / 2, (float)displayHeight / 2, (float)displayWidth, (float)displayHeight, 125);
 
+	//sets the font size and colour
 	CP_Settings_TextSize(FONT_SIZE);
 	CP_Color back = CP_Color_Create(255, 255, 255, 255);
 	CP_Settings_Fill(back);
-	/*CP_Graphics_DrawRect(10, 10, 1200, 550);
-	CP_Graphics_DrawRect(400, 600, 475, 55);
-	char *text = "HOW TO PLAY\n\
-	------------\n\
-	There will be 3 rows of enemies approaching you. \n\
-	Move your player up and down using the upand down arrow keys to target the enemy you wish to attack\n\
-	Type out the word given at the top of the enemy on the row you are standing\n\
-	Press the enter key in order to attack the typed out word\n\
-	Kill a certain amount of enemies to move on to the next level\n\
-	If you make 3 consecutive typing errors, the enemy will speed up.\n\
-	To go back to the original speed, you will need to type 2 consecutive correct answers";
-	CP_Color front = CP_Color_Create(0, 0, 0, 255);
-	CP_Settings_Fill(front);
-	CP_Font_DrawTextBox(text, 15, 50, 1200);*/
-
-	CP_Font_DrawText("Press SPACE to go back", 410, 645);
+	
+	//sets font colour,size, loads images and displays text so that screen displays first page of howtoplay
 	if (abc == 0)
 	{
 		CP_Graphics_DrawRect(70, 50, 1140, 600);
@@ -69,6 +71,7 @@ void howtoplay_update(void)
 		CP_Font_DrawTextBox("Press ESC anytime to return", 100, 620, 600);
 		CP_Font_DrawTextBox("Right arrow key >>>", 900, 620, 600);
 	}
+	//sets font colour,size, loads images and displays text so that screen displays second page of howtoplay
 	if (abc == 1)
 	{
 		CP_Graphics_DrawRect(70, 50, 1140, 600);
@@ -94,6 +97,7 @@ void howtoplay_update(void)
 
 		
 	}
+	//sets font colour,size and displays text so that screen displays third page of howtoplay
 	if (abc == 2)
 	{
 		CP_Graphics_DrawRect(70, 50, 1140, 600);
@@ -113,6 +117,7 @@ void howtoplay_update(void)
 		CP_Font_DrawTextBox("<<< Back", 100, 620, 600);
 		CP_Font_DrawTextBox("Next >>>", 1050, 620, 600);
 	}
+	//sets font colour,size and displays text so that screen displays last page of howtoplay
 	if (abc == 3)
 	{
 		CP_Graphics_DrawRect(70, 50, 1140, 600);
@@ -130,23 +135,16 @@ void howtoplay_update(void)
 		CP_Font_DrawTextBox("Level description: Boss, increase in speed if sentences entered are incorrect, enter a sentence correctly to reset speed", 170, 500, 1000);
 		CP_Settings_TextSize(FONT_SIZE3);
 		CP_Font_DrawTextBox("<<< Back", 100, 620, 600);
-		CP_Font_DrawTextBox("Next >>>", 1050, 620, 600);
+		
 	}
 
-	/*if (abc == 4)
-	{
-		CP_Graphics_DrawRect(70, 50, 1140, 600);
-		CP_Image gameplay = CP_Image_Load("./Assets/gameplay.png");
-		CP_Image_Draw(gameplay, 550, 380, 810, 495, 255);
-		CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
-		CP_Settings_TextSize(FONT_SIZE1);
-		CP_Font_DrawTextBox("Enemies appear from right-hand side", 970, 200, 250);
-	}*/
-
+	//return to main menu when ESC key is pressed
 	if (CP_Input_KeyTriggered(KEY_ESCAPE))
 	{
 		CP_Engine_SetNextGameState(mainmenu_init, mainmenu_update, mainmenu_exit);
 	}
+
+	//screen displays different pages of howtoplay when right and left arrow keys are pressed
 	if (CP_Input_KeyTriggered(KEY_RIGHT))
 	{
 		if (abc < 3)

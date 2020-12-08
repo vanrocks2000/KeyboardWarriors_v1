@@ -1,7 +1,17 @@
-/*
-	Coded by: ...
-	Code for animation : Hui Yang
-*/
+//---------------------------------------------------------
+// file:	gamelvl3.c
+// author:	Vanessa Luo
+// email:	vanessa.l@digipen.edu
+//
+// brief:	code for animation done by Hau Hui Yang
+//          the rest done by Vanessa Luo
+//
+// documentation link:
+// https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+//
+// Copyright © 2020 DigiPen, All rights reserved.
+//---------------------------------------------------------
+
 
 #include "cprocessing.h"
 #include <stdio.h>
